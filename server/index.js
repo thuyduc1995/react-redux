@@ -9,9 +9,8 @@ const host = config.settings.host || '0.0.0.0'
 const port = config.settings.port || 8000
 const env = process.env.NODE_ENV || 'development'
 const isDevMode = env.toLowerCase() !== 'production'
-
+const fetch = require('isomorphic-fetch');
 app.use(compression())
-
 app.set('views', `${__dirname}`)
 app.set('view engine', 'pug')
 
@@ -68,3 +67,19 @@ app.listen(port, config.settings.host, error => {
         console.info("✅ ✅ ✅  *** Listening at http://%s:%s *** ✅ ✅ ✅", host, port)
     }
 })
+
+//
+// fetch('http://localhost:8080/api/accounts/1')
+//     .then(response => {
+//         if (response.status >= 400) {
+//             throw new Error("Bad response from server");
+//         }
+//         response.json()
+//             .then(data => console.log(data));
+//
+//     })
+//     .catch(
+//         // Log the rejection reason
+//         (reason) => {
+//             console.log('Handle rejected promise ('+reason+') here.');
+//         });

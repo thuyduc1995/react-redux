@@ -1,7 +1,7 @@
 require("./assets/styles/app.scss")
 import React from 'react'
 import {render} from "react-dom"
-import {Router, browserHistory} from 'react-router'
+import {Router, Route, browserHistory} from 'react-router'
 import {Provider} from 'react-redux'
 import {createStore, compose, applyMiddleware} from 'redux'
 import {AppRoute} from './routes'
