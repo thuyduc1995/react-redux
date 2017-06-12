@@ -1,12 +1,8 @@
 import {App} from './app'
-import {Dashboard, DashboardRoute, AboutRoute, NotFoundRoute, Login} from './pages'
+import {Dashboard, DashboardRoute, AboutRoute, NotFoundRoute, LoginRoute} from './pages'
 
 export const AppRoute = {
     childRoutes: [
-        {
-            path: '/login',
-            component: Login
-        },
         {
             path: '/',
             component: App,
@@ -16,6 +12,7 @@ export const AppRoute = {
             childRoutes: [
                 DashboardRoute,
                 AboutRoute,
+                LoginRoute,
                 NotFoundRoute
             ]
         }

@@ -10,6 +10,7 @@ const port = config.settings.port || 8000
 const env = process.env.NODE_ENV || 'development'
 const isDevMode = env.toLowerCase() !== 'production'
 const fetch = require('isomorphic-fetch');
+const dataType = ['accounts', 'contacts', 'dashboards', 'tasks']
 app.use(compression())
 app.set('views', `${__dirname}`)
 app.set('view engine', 'pug')
@@ -34,24 +35,29 @@ if (isDevMode) {
     /* Case PRODUCTION mode */
     app.use(express.static(config.settings.distPath))
 }
-
-const initialState = {
-    dashboard: {
-        title: 'My Dashboard',
-        layoutColumn: 3,
-        widgets: [
-            {
-                title: 'widget 1'
-            },
-            {
-                title: 'widget 2'
-            },
-            {
-                title: 'widget 3'
-            }
-        ]
-    }
+let initialState = {
+    accounts:{},
+    contacts:{},
+    dashboards:{},
+    task:{}
 }
+// const initialState = {
+//     dashboard: {
+//         title: 'My Dashboard',
+//         layoutColumn: 3,
+//         widgets: [
+//             {
+//                 title: 'widget 1'
+//             },
+//             {
+//                 title: 'widget 2'
+//             },
+//             {
+//                 title: 'widget 3'
+//             }
+//         ]
+//     }
+// }
 
 app.get('*', (req, res) => {
     res.render('index', { initialState })
@@ -68,18 +74,52 @@ app.listen(port, config.settings.host, error => {
     }
 })
 
-//
-// fetch('http://localhost:8080/api/accounts/1')
-//     .then(response => {
-//         if (response.status >= 400) {
-//             throw new Error("Bad response from server");
-//         }
-//         response.json()
-//             .then(data => console.log(data));
-//
-//     })
-//     .catch(
-//         // Log the rejection reason
-//         (reason) => {
-//             console.log('Handle rejected promise ('+reason+') here.');
-//         });
+dataType.forEach(type => {
+    if (type ==='accounts') {
+        url = 'accounts/1'
+    }
+    else {
+        url = type;
+    }
+    console.log('http://localhost:8080/api/'+url)
+    fetch('http://localhost:8080/api/'+url)
+        .then(response => {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            response.json()
+                .then(data => initialState[type]= data);
+
+        })
+        .catch(
+            // Log the rejection reason
+            (reason) => {
+                console.log('Handle rejected promise ('+reason+') here.');
+            });
+})
+
+
+
+// const initialState = {
+//     account: {
+//         title: 'Admin account',
+//         account: {id: data.username, password: data.password}
+//     },
+//     dashboard: {
+//         title: 'My Dashboard',
+//         layoutColumn: 3,
+//         widgets: [
+//             {
+//                 title: 'widget 1'
+//             },
+//             {
+//                 title: 'widget 2'
+//             },
+//             {
+//                 title: 'widget 3'
+//             }
+//         ]
+//     }
+// }
+
+console.log(initialState)

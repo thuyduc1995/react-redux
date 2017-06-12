@@ -8,7 +8,7 @@ import {LoginView} from './login.view'
 export class Login extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {credentials: {email: '', password: ''}}
+        this.state = {credentials: {id: '', password: ''}}
         this.onChange = this.onChange.bind(this);
         this.onSave = this.onSave.bind(this);
     }
@@ -17,16 +17,21 @@ export class Login extends React.Component {
         const field = event.target.name;
         const credentials = this.state.credentials;
         credentials[field] = event.target.value;
-        return this.setState({credentials: credentials});
+        return this.setState({credentials});
     }
 
     onSave(event) {
         event.preventDefault();
-        this.props.actions.logInUser(this.state.credentials);
+        if (this.state.credentials.id === "" || this.state.credentials.password === "") {
+            alert("ID and Password must be filled out");
+        }
+        else {
+            console.log(this.state.credentials.id);
+            console.log(this.state.credentials.password);
+        }
     }
-
     render() {
-        return <LoginView />
+        return <LoginView onChangeEvent={this.onChange} onSaveEvent={this.onSave}/>
     }
 }
 
