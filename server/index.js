@@ -36,7 +36,9 @@ if (isDevMode) {
     app.use(express.static(config.settings.distPath))
 }
 let initialState = {
-
+    contacts:{},
+    dashboards:{},
+    task:{}
 }
 // const initialState = {
 //     dashboard: {
@@ -56,6 +58,21 @@ let initialState = {
 //     }
 // }
 
+dataType.forEach(type => {
+    fetch('http://localhost:8080/api/'+type)
+        .then(response => {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            response.json()
+                .then(data => initialState[type]= data);
+        })
+        .catch(
+            // Log the rejection reason
+            (reason) => {
+                console.log('Handle rejected promise ('+reason+') here.');
+            });
+})
 app.get('*', (req, res) => {
     res.render('index', { initialState })
 })
@@ -72,19 +89,8 @@ app.listen(port, config.settings.host, error => {
 })
 
 
-fetch('http://localhost:8080/api/accounts/1')
-    .then(response => {
-        if (response.status >= 400) {
-            throw new Error("Bad response from server");
-        }
-        response.json()
-            .then(data => {initialState = data; console.log(data)});
-        })
-    .catch(
-            // Log the rejection reason
-        (reason) => {
-            console.log('Handle rejected promise ('+reason+') here.');
-        });
+
+
 
 // const initialState = {
 //     account: {
@@ -107,6 +113,5 @@ fetch('http://localhost:8080/api/accounts/1')
 //         ]
 //     }
 // }
-console.log('1')
+
 console.log(initialState)
-console.log('1')

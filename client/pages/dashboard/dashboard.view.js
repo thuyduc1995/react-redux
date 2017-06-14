@@ -8,7 +8,7 @@ export const DashboardView = cssModules(({dashboard}) => {
     return (
         <div styleName='dashboard'>
             <div styleName='dashboard__title'>
-                <h4>{dashboard.title}</h4>
+                <h4>Ngu Người</h4>
                 <div styleName='dashboard__layout-selector'>
                     <ButtonGroup>
                         <Button>Left</Button>
