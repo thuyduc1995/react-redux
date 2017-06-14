@@ -36,10 +36,7 @@ if (isDevMode) {
     app.use(express.static(config.settings.distPath))
 }
 let initialState = {
-    accounts:{},
-    contacts:{},
-    dashboards:{},
-    task:{}
+
 }
 // const initialState = {
 //     dashboard: {
@@ -74,31 +71,20 @@ app.listen(port, config.settings.host, error => {
     }
 })
 
-dataType.forEach(type => {
-    if (type ==='accounts') {
-        url = 'accounts/1'
-    }
-    else {
-        url = type;
-    }
-    console.log('http://localhost:8080/api/'+url)
-    fetch('http://localhost:8080/api/'+url)
-        .then(response => {
-            if (response.status >= 400) {
-                throw new Error("Bad response from server");
-            }
-            response.json()
-                .then(data => initialState[type]= data);
 
+fetch('http://localhost:8080/api/accounts/1')
+    .then(response => {
+        if (response.status >= 400) {
+            throw new Error("Bad response from server");
+        }
+        response.json()
+            .then(data => {initialState = data; console.log(data)});
         })
-        .catch(
+    .catch(
             // Log the rejection reason
-            (reason) => {
-                console.log('Handle rejected promise ('+reason+') here.');
-            });
-})
-
-
+        (reason) => {
+            console.log('Handle rejected promise ('+reason+') here.');
+        });
 
 // const initialState = {
 //     account: {
@@ -121,5 +107,6 @@ dataType.forEach(type => {
 //         ]
 //     }
 // }
-
+console.log('1')
 console.log(initialState)
+console.log('1')
