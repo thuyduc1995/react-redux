@@ -1,12 +1,13 @@
 import React from 'react'
-import {ButtonGroup, Button, Panel} from 'react-bootstrap'
-import cssModules from 'react-css-modules'
-import style from './addWidget.style.scss'
 
-export const AddWidgetView = cssModules(() => {
+import cssModules from 'react-css-modules'
+import style from './panel.style.scss'
+
+export const PanelHeadingView = cssModules(() => {
     return (
-        <Panel header={'Add Widget'} bsStyle="primary" styleName='widget'>
-            Panel content
-        </Panel>
+        <div className="panel panel-default">
+            <div className="panel-heading">Panel Heading</div>
+            <div className="panel-body">Panel Content</div>
+        </div>
     )
 }, style, {errorWhenNotFound: false})

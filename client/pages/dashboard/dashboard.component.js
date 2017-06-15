@@ -5,9 +5,7 @@ import { browserHistory } from 'react-router'
 
 @connect(state => ({dashboard: state.dashboards}))
 export class Dashboard extends React.Component {
-
     render() {
-
         if (!sessionStorage.user) {
             browserHistory.push('/login')
         }

@@ -15,17 +15,18 @@
   font-weight: bold;
 }
 .body-content{
-  font-size: 80px !important;
+  font-size: 160px !important;
+  margin: auto;
   border-radius: 0 !important;
   height: 227px !important;
+
   color: #767676;
 }
 .panel-body{
+  padding: 0;
   margin: auto;
   text-align: center;
   background-color: #EFF0F1;
-  padding-top: 65px;
-  height: 227px !important;
 }
 .panel-heading--icon{
   float: right;
