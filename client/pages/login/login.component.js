@@ -6,35 +6,40 @@ import { browserHistory } from 'react-router'
 @connect(state => state, { userLoginRequest })
 export class Login extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
-            id: '',
-            password: ''
+            username: '',
+            password: '',
+            isWrong: false
         }
-        this.onChange = this.onChange.bind(this);
-        this.onSave = this.onSave.bind(this);
+        this.onChange = this.onChange.bind(this)
+        this.onSave = this.onSave.bind(this)
     }
     onChange(event) {
         let { name, value } = event.target
-        return this.setState({ [name]: value });
+
+
+return this.setState({ [name]: value })
     }
     onSave(event) {
         event.preventDefault()
-        let { id, password } = this.state
+        let { username, password } = this.state
 
-        if (id === '' || password === '') {
+        if (username === '' || password === '') {
             alert("ID and Password must be filled out")
         }
         else {
-            this.props.userLoginRequest({ id, password })
+            this.props.userLoginRequest({ username, password })
                 .then(
-                    res => browserHistory.push('/dashboard')
+                    browserHistory.push('/dashboard')
                 )
-                .catch(err => alert(err))
+                .catch(
+                    result => this.setState({ isWrong: result })
+                )
         }
     }
     render() {
-        return <LoginView onChangeEvent={this.onChange} onSaveEvent={this.onSave}/>
+        return <LoginView onChangeEvent={this.onChange} onSaveEvent={this.onSave} isWrong={this.state.isWrong}/>
     }
 }
 

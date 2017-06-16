@@ -31,6 +31,8 @@ export const DashboardView = cssModules(({dashboard}) => {
                 <AddWidget isNewWidget/>
                 <AddWidget isNewWidget/>
                 <AddWidget isNewWidget/>
+                <AddWidget isNewWidget/>
+                <AddWidget isNewWidget/>
             </div>
         </div>
     )

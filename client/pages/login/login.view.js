@@ -4,8 +4,11 @@ import cssModules from 'react-css-modules'
 import style from './login.style.scss'
 
 
-export const LoginView = cssModules(({onChangeEvent, onSaveEvent}) => {
-    return (
+export const LoginView = cssModules(({onChangeEvent, onSaveEvent, isWrong}) => {
+    let messageAppear = isWrong ? 'block' : 'none'
+
+
+return (
         <Row className="show-grid">
             <Col mdOffset={4} md={4} >
                 <form className="form-control" styleName="login__form">
@@ -14,7 +17,7 @@ export const LoginView = cssModules(({onChangeEvent, onSaveEvent}) => {
                         type="text"
                         styleName='login__input'
                         className="form-control"
-                        name="id"
+                        name="username"
                         placeholder="Username"
                         required=""
                         autoFocus=""
@@ -28,6 +31,7 @@ export const LoginView = cssModules(({onChangeEvent, onSaveEvent}) => {
                         required=""
                         onChange={onChangeEvent}/>
                     <Button bsStyle="primary" styleName="login__button" onClick={onSaveEvent}>Login</Button>
+                    <p style={{display: messageAppear}}>Wrong Username or Password</p>
                 </form>
             </Col>
         </Row>
