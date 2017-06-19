@@ -5,6 +5,7 @@ import {Todos} from './components'
 import style from './dashboard.style.scss'
 import {AddWidget} from './components/addWidget/addWidget.component';
 
+
 export const DashboardView = cssModules(({dashboard}) => {
     return (
         <div styleName='dashboard'>

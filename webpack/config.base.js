@@ -36,6 +36,12 @@ module.exports = {
       {
         test: /\.(woff|woff2|eot|ttf|svg).*$/,
         loader: 'url-loader?name=assets/fonts/[name].[ext]'
+      },
+      /* css */
+      {
+            test: /\.css$/,
+            include: /node_modules/,
+            loader:  'style!css'
       }
     ]
   },

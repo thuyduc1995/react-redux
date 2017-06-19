@@ -2,8 +2,6 @@ import React from 'react'
 import { ButtonGroup, Button, Panel} from 'react-bootstrap'
 import cssModules from 'react-css-modules'
 import style from './addWidget.style.scss'
-import { PanelHeadingView } from '../panel/panelHeading.view'
-import { PanelContentView } from '../panel/panelContent.view'
 
 export const AddWidgetView = cssModules(({ createNewWidgetEvent }) => {
         return (

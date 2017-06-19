@@ -19,7 +19,8 @@ export class Login extends React.Component {
         let { name, value } = event.target
 
 
-return this.setState({ [name]: value })
+        return this.setState({ [name]: value })
+
     }
     onSave(event) {
         event.preventDefault()
