@@ -3,10 +3,11 @@ import {ButtonGroup, Button} from 'react-bootstrap'
 import cssModules from 'react-css-modules'
 import {Todos} from './components'
 import style from './dashboard.style.scss'
-import {AddWidget} from './components/addWidget/addWidget.component';
-
-
-export const DashboardView = cssModules(({dashboard}) => {
+import {AddWidget} from './components/addWidget/addWidget.component'
+import {TextWidget} from './components/textWidget/textWidget.component'
+import {TodoWidget} from './components/todoWidget/todoWidget.component'
+import {DatatableWidget} from './components/datatableWidget/datatableWidget.component'
+export const DashboardView = cssModules(() => {
     return (
         <div styleName='dashboard'>
             <div styleName='dashboard__title'>
@@ -29,11 +30,12 @@ export const DashboardView = cssModules(({dashboard}) => {
             </div>
             <div styleName='dashboard__body'>
                 <AddWidget isNewWidget/>
+                <DatatableWidget/>
+                <TodoWidget/>
                 <AddWidget isNewWidget/>
+                <TextWidget />
                 <AddWidget isNewWidget/>
-                <AddWidget isNewWidget/>
-                <AddWidget isNewWidget/>
-                <AddWidget isNewWidget/>
+                <DatatableWidget/>
             </div>
         </div>
     )

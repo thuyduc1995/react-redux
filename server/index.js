@@ -10,7 +10,7 @@ const port = config.settings.port || 8000
 const env = process.env.NODE_ENV || 'development'
 const isDevMode = env.toLowerCase() !== 'production'
 const fetch = require('isomorphic-fetch');
-const dataType = ['accounts', 'contacts', 'dashboards', 'tasks']
+const dataType = ['contacts', 'dashboards', 'tasks']
 app.use(compression())
 app.set('views', `${__dirname}`)
 app.set('view engine', 'pug')

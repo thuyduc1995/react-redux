@@ -5,7 +5,7 @@ import style from './settingWidget.style.scss'
 import {ToDoSettingView} from './component/todoSetting.view'
 import {DatatableSettingView} from './component/datatableSetting.view'
 import {TextSettingView} from './component/textSetting.view'
-import {OrgChartSettingView} from './component/orgchartSetting.view'
+import {OrgchartSettingView} from './component/orgchartSetting.view'
 
 
 export const SettingWidgetView = cssModules(({ changeDropdown, typeWidget }) => {
@@ -106,7 +106,6 @@ export const SettingWidgetView = cssModules(({ changeDropdown, typeWidget }) => 
                                 <Button styleName="form--button">Cancel</Button>
                             </form>
                         </div>
-                        <ToDoSettingView/>
                     </div>
                 </div>
             )
@@ -156,7 +155,7 @@ export const SettingWidgetView = cssModules(({ changeDropdown, typeWidget }) => 
                                 <Button styleName="form--button">Cancel</Button>
                             </form>
                         </div>
-                        <OrgChartSettingView/>
+                        <OrgchartSettingView/>
                     </div>
                 </div>
             )

@@ -1,0 +1,81 @@
+.widget{
+  width: 400px;
+  height: 200px;
+}
+.panel{
+  width: 600px !important;
+  height: 270px !important;
+  border-radius: 0;
+
+}
+.panel-heading{
+  background-color: #245380 !important;
+  color: white !important;
+  border-radius: 0;
+  font-weight: bold;
+}
+.body-content{
+  font-size: 80px !important;
+  border-radius: 0 !important;
+  height: 227px !important;
+  color: #767676;
+}
+.panel-body{
+  height: 227px !important;
+  padding: 0;
+}
+.panel-heading--icon{
+  float: right;
+  font-size: 15px;
+}
+.form--input{
+  border: none;
+  box-shadow: none;
+  font-size: 15px;
+  padding-left: 15px;
+  font-weight: bolder;
+}
+.form--first-text{
+  margin-left: 10px;
+  margin-right: 50px;
+  font-weight: bolder;
+}
+.form--button{
+  margin-left: 10px;
+}
+.form--last-text{
+  margin-left: 110px;
+  font-weight: bolder;
+}
+.list--container{
+  margin-top: 10px;
+  overflow: auto;
+  height: 149px;
+}
+.icon--not-done{
+  width: 22px;
+  height: 22px;
+  border-radius: 11px;
+  border: 2px solid #245380;
+  background-color: white;
+  margin-right: 15px;
+
+}
+.icon--done{
+  font-size: 22px;
+  color: #245380;
+  left:-2.6px;
+  top: -1.6px;
+}
+.list--item{
+  display: inline-flex;
+  width:100%;
+  color: #888888;
+  //text-decoration: line-through;
+}
+.icon--remove{
+  margin-left: 450px;
+  font-size: 20px;
+  color: #a5342e;
+  text-decoration: none;
+}

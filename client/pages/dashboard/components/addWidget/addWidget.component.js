@@ -1,10 +1,6 @@
 import React from 'react'
 import {AddWidgetView} from './addWidget.view'
 import {SettingWidget} from '../settingWidget/settingWidget.component'
-import {connect} from 'react-redux'
-import { browserHistory } from 'react-router'
-import { LoginView } from '../../../login/login.view'
-
 
 export class AddWidget extends React.Component {
     constructor(props) {
