@@ -9,8 +9,9 @@ const host = config.settings.host || '0.0.0.0'
 const port = config.settings.port || 8000
 const env = process.env.NODE_ENV || 'development'
 const isDevMode = env.toLowerCase() !== 'production'
-const fetch = require('isomorphic-fetch');
+const fetch = require('isomorphic-fetch')
 const dataType = ['contacts', 'dashboards', 'tasks']
+
 app.use(compression())
 app.set('views', `${__dirname}`)
 app.set('view engine', 'pug')
@@ -36,9 +37,9 @@ if (isDevMode) {
     app.use(express.static(config.settings.distPath))
 }
 let initialState = {
-    contacts:{},
-    dashboards:{},
-    task:{}
+    contacts: {},
+    dashboards: {},
+    task: {}
 }
 // const initialState = {
 //     dashboard: {
@@ -59,19 +60,19 @@ let initialState = {
 // }
 
 dataType.forEach(type => {
-    fetch('http://localhost:8080/api/'+type)
+    fetch(`http://localhost:8080/api/${type}`)
         .then(response => {
             if (response.status >= 400) {
-                throw new Error("Bad response from server");
+                throw new Error("Bad response from server")
             }
             response.json()
-                .then(data => initialState[type]= data);
+                .then(data => initialState[type] = data)
         })
         .catch(
             // Log the rejection reason
             (reason) => {
-                console.log('Handle rejected promise ('+reason+') here.');
-            });
+                console.log(`Handle rejected promise (${reason}) here.`)
+            })
 })
 app.get('*', (req, res) => {
     res.render('index', { initialState })
@@ -87,9 +88,6 @@ app.listen(port, config.settings.host, error => {
         console.info("✅ ✅ ✅  *** Listening at http://%s:%s *** ✅ ✅ ✅", host, port)
     }
 })
-
-
-
 
 
 // const initialState = {

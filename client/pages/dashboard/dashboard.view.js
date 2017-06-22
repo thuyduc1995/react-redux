@@ -8,6 +8,7 @@ import {TextWidget} from './components/textWidget/textWidget.component'
 import {TodoWidget} from './components/todoWidget/todoWidget.component'
 import {DatatableWidget} from './components/datatableWidget/datatableWidget.component'
 export const DashboardView = cssModules(() => {
+
     return (
         <div styleName='dashboard'>
             <div styleName='dashboard__title'>
