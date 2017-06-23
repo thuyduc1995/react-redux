@@ -26,7 +26,7 @@ export class Login extends React.Component {
         event.preventDefault()
         let { username, password } = this.state
 
-        if (username === '' || password === '') {
+        if (username === '') {
             alert("ID and Password must be filled out")
         }
         else {
@@ -35,11 +35,13 @@ export class Login extends React.Component {
                     browserHistory.push('/dashboard')
                 )
                 .catch(
-                    result => this.setState({ isWrong: result })
+                    result => this.setState({isWrong: result})
                 )
         }
     }
     render() {
+
+
         return <LoginView onChangeEvent={this.onChange} onSaveEvent={this.onSave} isWrong={this.state.isWrong}/>
     }
 }

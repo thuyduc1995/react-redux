@@ -39,10 +39,10 @@ if (isDevMode) {
 let initialState = {
     contacts: {},
     dashboards: {},
-    task: {}
+    tasks: {}
 }
 // const initialState = {
-//     dashboard: {
+//     dashboards: {
 //         title: 'My Dashboard',
 //         layoutColumn: 3,
 //         widgets: [
@@ -111,5 +111,3 @@ app.listen(port, config.settings.host, error => {
 //         ]
 //     }
 // }
-
-console.log(initialState)

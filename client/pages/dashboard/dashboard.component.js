@@ -8,24 +8,25 @@ import {interactWithServer} from '../../../client/dataHandler/dataLoader'
 export class Dashboard extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {
-            dashboard: []
-        }
     }
-    componentDidMount() {
-        interactWithServer('http://localhost:8080/api/dashboards', 'GET').then((result) => {
-            this.setState({dashboard: result})
-        })
-    }
+
     render() {
         if (!sessionStorage.getItem('jwtToken')) {
             browserHistory.push('/login')
         }
-        console.log(this.props.dashboard)
-        this.state.dashboard.forEach(obj => {
-            console.log(obj.id)
-        })
-
-return <DashboardView data={this.state.dashboard}/>
+        console.log(this.props.dashboard[0])
+        return <DashboardView dashboard={this.props.dashboard[0]}/>
     }
 }
+
+
+
+
+
+// componentDidMount() {
+//     interactWithServer('http://localhost:8080/api/dashboards', 'GET').then((result) => {
+//         this.setState({dashboard: result})
+//     })
+// }
+
+

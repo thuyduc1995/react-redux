@@ -22,9 +22,5 @@ export const AppRoute = {
                 NotFoundRoute
             ]
         },
-        {
-            path: '/simple-page',
-            component: SimplePage
-        }
     ]
 }

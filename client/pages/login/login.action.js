@@ -35,7 +35,6 @@ export const userLoginRequest = (user) => {
             }).catch(() => {
                 reject(true)
             })
-            reject(true)
         })
     }
 }
