@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import { dashboards, login } from './pages'
+import { dashboards, login, contacts, tasks } from './pages'
 
 export const AppReducer = combineReducers({
-    dashboards, login
+    dashboards, login, contacts, tasks
 })

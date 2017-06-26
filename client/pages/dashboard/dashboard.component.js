@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import { browserHistory } from 'react-router'
 import {interactWithServer} from '../../../client/dataHandler/dataLoader'
 
-@connect(state => ({dashboard: state.dashboards}))
+@connect(state => ({dashboards: state.dashboards}))
 export class Dashboard extends React.Component {
     constructor(props) {
         super(props)
@@ -14,11 +14,9 @@ export class Dashboard extends React.Component {
         if (!sessionStorage.getItem('jwtToken')) {
             browserHistory.push('/login')
         }
-        console.log(this.props.dashboard[0])
-        return <DashboardView dashboard={this.props.dashboard[0]}/>
+        return <DashboardView dashboard={this.props.dashboards[0]}/>
     }
 }
-
 
 
 

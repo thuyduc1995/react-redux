@@ -2,105 +2,49 @@ import React from 'react'
 import cssModules from 'react-css-modules'
 import style from './datatableWidget.style.scss'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table'
+import {TitleWidgetView} from '../titleWidget.view'
 
-export const DatatableWidgetView = cssModules(() => {
-    let products = [
-        {
-            id: 1,
-            name: "Item name 1",
-            price: 100,
-            status: 'over'
-        },
-        {
-            id: 2,
-            name: "Item name 2",
-            price: 10,
-            status: 'low'
-        },
-        {
-            id: 3,
-            name: "Item name 3",
-            price: 1000,
-            status: 'high'
-        },
-        {
-            id: 3,
-            name: "Item name 3",
-            price: 1000,
-            status: 'high'
-        },
-        {
-            id: 3,
-            name: "Item name 3",
-            price: 1000,
-            status: 'high'
-        },
-        {
-            id: 3,
-            name: "Item name 3",
-            price: 1000,
-            status: 'high'
-        },
-        {
-            id: 3,
-            name: "Item name 3",
-            price: 1000,
-            status: 'high'
-        },
-        {
-            id: 3,
-            name: "Item name 3",
-            price: 1000,
-            status: 'high'
-        },
-        {
-            id: 3,
-            name: "Item name 3",
-            price: 1000,
-            status: 'high'
-        },
-        {
-            id: 3,
-            name: "Item name 3",
-            price: 1000,
-            status: 'high'
-        },
-        {
-            id: 3,
-            name: "Item name 3",
-            price: 1000,
-            status: 'high'
-        }
-    ]
+let renderShowsTotal = (start, to, total) => {
+    return (
+        <h4 style={{'paddingLeft': '15px', 'marginBottom': '-20px'}}>
+            { start } to { to } of {total} Contacts
+        </h4>
+    )
+}
+
+export const DatatableWidgetView = cssModules(({data, contact}) => {
+    // let listField = Object.keys(contact[0])
+    let listField = data.configs.activeColumn
+
     const options = {
-        page: 1,  // which page you want to show as default
-        sizePerPage: 4,  // which size per page you want to locate as default
-        pageStartIndex: 1, // where to start counting the pages
-        paginationSize: 3,  // the pagination bar size.
-        prePage: '<<', // Previous page button text
-        nextPage: '>>', // Next page button text
+        page: 1,
+        sizePerPage: 5,
+        pageStartIndex: 1,
+        paginationSize: 3,
+        prePage: '<<',
+        nextPage: '>>',
         hideSizePerPage: true,
         alwaysShowAllBtns: true,
-        paginationPosition: 'top'
+        paginationPosition: 'top',
+        paginationShowsTotal: renderShowsTotal
     }
 
     return (
         <div>
             <div className="panel panel-default" styleName="panel">
-                <div className="panel-heading" styleName="panel-heading">
-                    Add Widget
-                    <span className="glyphicon glyphicon-cog" styleName="panel-heading--icon"></span>
-                </div>
+                <TitleWidgetView widgetTitle = {data.title}/>
                 <div className="panel-body" styleName="panel-body">
-                    <h4 styleName="datatable--note">1 to 5 of 20 contacts</h4>
-                    <BootstrapTable data={products} striped hover pagination condensed={true} options={ options } styleName='datatable' bordered={ false }>
-                        <TableHeaderColumn dataField="id" isKey dataAlign="center" dataSort>Product ID</TableHeaderColumn>
-                        <TableHeaderColumn dataField="name" dataSort>Product Name</TableHeaderColumn>
-                        <TableHeaderColumn dataField="price" dataSort>Product Price</TableHeaderColumn>
-                        <TableHeaderColumn dataField="status" dataSort>Status</TableHeaderColumn>
+                    <BootstrapTable data={contact} striped hover pagination condensed={true} options={ options } styleName='datatable' bordered={ false }>
+                        <TableHeaderColumn dataField='defaultIsKey' dataSort isKey={true} style={{'display': 'none'}} hidden>First Name</TableHeaderColumn>
+                        {
+                            listField.map(field => {
+                                return <TableHeaderColumn dataField={field} dataSort>{field.toUpperCase()}</TableHeaderColumn>
+                            })
+                        }
                     </BootstrapTable>
                 </div>
             </div>
         </div>
     )
 }, style)
+

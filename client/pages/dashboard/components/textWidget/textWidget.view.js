@@ -6,7 +6,7 @@ export const TextWidgetView = cssModules(({data}) => {
     return (
         <div>
             <div className="panel panel-default" styleName="panel">
-                <TitleWidgetView data={data}/>
+                <TitleWidgetView widgetTitle={data.title}/>
                 <div className="panel-body" styleName="panel-body">
                     <div styleName="body-content" >
                         {data.configs.text}

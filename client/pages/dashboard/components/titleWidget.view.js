@@ -2,13 +2,14 @@ import React from 'react'
 import cssModules from 'react-css-modules'
 import style from './titleWidget.style.scss'
 
-export const TitleWidgetView = cssModules(({data}) => {
+export const TitleWidgetView = cssModules(({widgetTitle}) => {
+    console.log(widgetTitle)
     return (
         <div className="panel-heading" styleName="panel-heading">
-            {data.title}
+            {widgetTitle}
             <span className="glyphicon glyphicon-remove" styleName="panel-heading--icon"></span>
             <span className="glyphicon glyphicon-fullscreen" styleName="panel-heading--icon"></span>
             <span className="glyphicon glyphicon-cog" styleName="panel-heading--icon"></span>
         </div>
     )
-}, style)
+}, style);

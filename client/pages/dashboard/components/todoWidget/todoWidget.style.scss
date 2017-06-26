@@ -27,6 +27,7 @@
 .panel-heading--icon{
   float: right;
   font-size: 15px;
+  margin-left: 10px;
 }
 .form--input{
   border: none;
@@ -64,18 +65,19 @@
 .icon--done{
   font-size: 22px;
   color: #245380;
-  left:-2.6px;
+  left:-2.2px;
   top: -1.6px;
 }
 .list--item{
   display: inline-flex;
   width:100%;
-  color: #888888;
-  //text-decoration: line-through;
 }
 .icon--remove{
-  margin-left: 450px;
+  float: right;
   font-size: 20px;
   color: #a5342e;
-  text-decoration: none;
+  display: inline;
+}
+.item--content{
+  width: 100%;
 }
