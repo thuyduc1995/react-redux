@@ -12,7 +12,7 @@ let renderShowsTotal = (start, to, total) => {
     )
 }
 
-export const DatatableWidgetView = cssModules(({data, contact}) => {
+export const DatatableWidgetView = cssModules(({data, contact, settingClick, dashboardMode}) => {
     // let listField = Object.keys(contact[0])
     let listField = data.configs.activeColumn
 
@@ -32,7 +32,7 @@ export const DatatableWidgetView = cssModules(({data, contact}) => {
     return (
         <div>
             <div className="panel panel-default" styleName="panel">
-                <TitleWidgetView widgetTitle = {data.title}/>
+                <TitleWidgetView widgetTitle={data.title} settingClick = {settingClick} dashboardMode = {dashboardMode}/>
                 <div className="panel-body" styleName="panel-body">
                     <BootstrapTable data={contact} striped hover pagination condensed={true} options={ options } styleName='datatable' bordered={ false }>
                         <TableHeaderColumn dataField='defaultIsKey' dataSort isKey={true} style={{'display': 'none'}} hidden>First Name</TableHeaderColumn>

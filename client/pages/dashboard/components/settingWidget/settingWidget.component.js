@@ -2,13 +2,11 @@ import React from 'react'
 import {SettingWidgetView} from './settingWidget.view'
 import {connect} from 'react-redux'
 
-
-@connect(state => ({dashboard: state.dashboards}))
 export class SettingWidget extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            targetType: 'default'
+            targetType: this.props.data.widgetType
         }
     }
     changeDropdown = (event) => {
@@ -16,6 +14,6 @@ export class SettingWidget extends React.Component {
     }
 
     render() {
-        return <SettingWidgetView changeDropdown={this.changeDropdown} typeWidget = {this.state.targetType}/>
+        return <SettingWidgetView changeDropdown={this.changeDropdown} typeWidget = {this.state.targetType} cancelClick = {this.props.cancelClick} data = {this.props.data}/>
     }
 }

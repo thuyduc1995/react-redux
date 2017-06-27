@@ -2,11 +2,11 @@ import React from 'react'
 import cssModules from 'react-css-modules'
 import style from './textWidget.style.scss'
 import {TitleWidgetView} from '../titleWidget.view'
-export const TextWidgetView = cssModules(({data}) => {
+export const TextWidgetView = cssModules(({data, settingClick, dashboardMode}) => {
     return (
         <div>
             <div className="panel panel-default" styleName="panel">
-                <TitleWidgetView widgetTitle={data.title}/>
+                <TitleWidgetView widgetTitle={data.title} settingClick = {settingClick} dashboardMode = {dashboardMode}/>
                 <div className="panel-body" styleName="panel-body">
                     <div styleName="body-content" >
                         {data.configs.text}

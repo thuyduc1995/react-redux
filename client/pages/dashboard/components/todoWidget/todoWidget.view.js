@@ -4,7 +4,7 @@ import style from './todoWidget.style.scss'
 import {FormControl, ControlLabel, Button, ListGroup, ListGroupItem} from 'react-bootstrap'
 import {TitleWidgetView} from '../titleWidget.view'
 
-export const TodoWidgetView = cssModules(({data, task, clickHandle, visibility, changeVisibility}) => {
+export const TodoWidgetView = cssModules(({data, task, visibility, changeVisibility, settingClick, dashboardMode}) => {
     let tempTask = {}
     let itemAll = []
 
@@ -37,7 +37,7 @@ export const TodoWidgetView = cssModules(({data, task, clickHandle, visibility, 
     return (
         <div>
             <div className="panel panel-default" styleName="panel">
-                <TitleWidgetView widgetTitle = {data.title}/>
+                <TitleWidgetView widgetTitle = {data.title} settingClick = {settingClick} dashboardMode = {dashboardMode}/>
                 <div className="panel-body" styleName="panel-body">
                     <FormControl
                         type="text"
@@ -57,7 +57,7 @@ export const TodoWidgetView = cssModules(({data, task, clickHandle, visibility, 
                             if (item.isCompleted) {
                                 return (
                                     <ListGroupItem styleName="list--item" key= {item.id}>
-                                        <div styleName="icon--not-done" onClick = { () => clickHandle(item.id)} >
+                                        <div styleName="icon--not-done">
                                             <span className="glyphicon glyphicon-ok-circle" styleName="icon--done"/>
                                         </div>
                                         <div style={{textDecoration: 'line-through', color: '#888888'}} styleName="item--content">
@@ -69,7 +69,7 @@ export const TodoWidgetView = cssModules(({data, task, clickHandle, visibility, 
 
                                 return (
                                     <ListGroupItem styleName="list--item" key= {item.id}>
-                                        <div styleName="icon--not-done" onClick = { () => clickHandle(item.id)} >
+                                        <div styleName="icon--not-done">
                                             <span className="glyphicon glyphicon-ok-circle" styleName="icon--done" style={{display: 'none'}}/>
                                         </div>
                                         <div styleName="item--content">

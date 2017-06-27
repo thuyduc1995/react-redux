@@ -8,15 +8,15 @@ import {TextWidget} from './components/textWidget/textWidget.component'
 import {TodoWidget} from './components/todoWidget/todoWidget.component'
 import {DatatableWidget} from './components/datatableWidget/datatableWidget.component'
 
-export const DashboardView = cssModules(({dashboard}) => {
+export const DashboardView = cssModules(({dashboard, changeViewMode, changeEditMode, dashboardMode}) => {
 return (
         <div styleName='dashboard'>
             <div styleName='dashboard__title'>
                 <h4>{dashboard.title}</h4>
                 <div styleName='dashboard__layout-selector'>
                     <ButtonGroup>
-                        <Button>View</Button>
-                        <Button>Edit</Button>
+                        <Button onClick = {changeViewMode}>View</Button>
+                        <Button onClick = {changeEditMode}>Edit</Button>
                     </ButtonGroup>
                 </div>
                 <div styleName='dashboard__layout-selector'>
@@ -34,13 +34,13 @@ return (
                     dashboard.widgets.map(obj => {
                         switch (obj.widgetType) {
                             case 'TEXT_WIDGET':
-                                return <TextWidget data={obj} key={obj.id}/>
+                                return <TextWidget data={obj} dashboardMode={dashboardMode} key={obj.id}/>
                             case 'DATATABLE_WIDGET':
-                                return <DatatableWidget data={obj} key={obj.id}/>
+                                return <DatatableWidget data={obj} dashboardMode={dashboardMode} key={obj.id}/>
                             case 'TODO_WIDGET':
-                                return <TodoWidget data={obj} key={obj.id}/>
+                                return <TodoWidget data={obj} dashboardMode={dashboardMode} key={obj.id}/>
                             default:
-                                return <AddWidget isNewWidget key={obj.id}/>
+                                return <AddWidget data={obj} dashboardMode={dashboardMode} key={obj.id}/>
                         }
                     })
                 }
@@ -56,3 +56,9 @@ return (
 // <TextWidget />
 // <AddWidget isNewWidget/>
 // <DatatableWidget/>
+
+// if (dashboardMode !== 'view') {
+//     return <AddWidget data={obj} dashboardMode={dashboardMode} key={obj.id}/>
+// }
+//
+// return null

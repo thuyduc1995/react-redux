@@ -1,17 +1,26 @@
 import React from 'react'
 import {TodoWidgetView} from './todoWidget.view'
 import {connect} from 'react-redux'
+import {SettingWidget} from '../settingWidget/settingWidget.component'
 
 @connect(state => ({task: state.tasks}))
 export class TodoWidget extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            visibility: 'all'
+            visibility: 'all',
+            mode: 'display'
         }
     }
-    clickEvent = (id) => {
-        console.log(id)
+    settingClickEvent = (event) => {
+        event.preventDefault()
+
+        return this.setState({mode: 'setting'})
+    }
+    cancelClickEvent = (event) => {
+        event.preventDefault()
+
+        return this.setState({mode: 'display'})
     }
     changeVisibilityEvent = (event) => {
         switch (event.target.value) {
@@ -24,6 +33,11 @@ export class TodoWidget extends React.Component {
         }
     }
     render() {
-        return <TodoWidgetView data = {this.props.data} task={this.props.task} clickHandle = {this.clickEvent} visibility={this.state.visibility} changeVisibility={this.changeVisibilityEvent}/>
+        if (this.state.mode === 'display') {
+            return <TodoWidgetView data={this.props.data} task={this.props.task} visibility={this.state.visibility}
+                                   changeVisibility={this.changeVisibilityEvent} settingClick={this.settingClickEvent} dashboardMode = {this.props.dashboardMode}/>
+        }
+
+            return <SettingWidget cancelClick = {this.cancelClickEvent} data = {this.props.data}/>
     }
 }
