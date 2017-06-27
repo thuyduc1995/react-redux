@@ -1,6 +1,6 @@
 import React from 'react'
 import {AddWidgetView} from './addWidget.view'
-import {SettingWidget} from '../settingWidget/settingWidget.component'
+import {SettingNewWidget} from '../settingWidget/settingNewWidget/settingNewWidget.component'
 
 export class AddWidget extends React.Component {
     constructor(props) {
@@ -25,6 +25,6 @@ export class AddWidget extends React.Component {
             return <AddWidgetView settingClick={this.settingClickEvent} dashboardMode = {this.props.dashboardMode}/>
         }
 
-            return <SettingWidget cancelClick = {this.cancelClickEvent} data = {this.props.data}/>
+            return <SettingNewWidget cancelClick = {this.cancelClickEvent} data = {this.props.data}/>
     }
 }

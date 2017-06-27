@@ -1,7 +1,7 @@
 import React from 'react'
 import {TodoWidgetView} from './todoWidget.view'
 import {connect} from 'react-redux'
-import {SettingWidget} from '../settingWidget/settingWidget.component'
+import {SettingTodoWidget} from '../settingWidget/settingTodoWidget/settingTodoWidget.component'
 
 @connect(state => ({task: state.tasks}))
 export class TodoWidget extends React.Component {
@@ -38,6 +38,6 @@ export class TodoWidget extends React.Component {
                                    changeVisibility={this.changeVisibilityEvent} settingClick={this.settingClickEvent} dashboardMode = {this.props.dashboardMode}/>
         }
 
-            return <SettingWidget cancelClick = {this.cancelClickEvent} data = {this.props.data}/>
+            return <SettingTodoWidget cancelClick = {this.cancelClickEvent} data = {this.props.data}/>
     }
 }

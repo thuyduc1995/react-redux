@@ -1,6 +1,6 @@
 import React from 'react'
 import cssModules from 'react-css-modules'
-import style from './chooseWidget.style.scss'
+import style from '../settingWidget.style.scss'
 import { Editor } from 'react-draft-wysiwyg'
 import '../../../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 import { EditorState, ContentState } from 'draft-js'

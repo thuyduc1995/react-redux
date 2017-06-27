@@ -1,7 +1,7 @@
 import React from 'react'
 
 import {TextWidgetView} from './textWidget.view'
-import {SettingWidget} from '../settingWidget/settingWidget.component'
+import {SettingTextWidget} from '../settingWidget/settingTextWidget/settingTextWidget.component'
 
 export class TextWidget extends React.Component {
     constructor(props) {
@@ -26,7 +26,7 @@ export class TextWidget extends React.Component {
             return <TextWidgetView data = {this.props.data} settingClick = {this.settingClickEvent} dashboardMode = {this.props.dashboardMode}/>
         }
 
-            return <SettingWidget cancelClick = {this.cancelClickEvent} data = {this.props.data}/>
+            return <SettingTextWidget cancelClick = {this.cancelClickEvent} data = {this.props.data}/>
     }
 }
 

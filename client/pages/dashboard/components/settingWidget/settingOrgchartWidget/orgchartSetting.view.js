@@ -1,6 +1,6 @@
 import React from 'react'
 import cssModules from 'react-css-modules'
-import style from './chooseWidget.style.scss'
+import style from '../settingWidget.style.scss'
 import { FormControl } from 'react-bootstrap'
 
 let array1 = ['Contacts', 'Dashboards', 'Todos']

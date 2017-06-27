@@ -1,27 +1,10 @@
 import React from 'react'
 import {Button, ControlLabel, FormControl} from 'react-bootstrap'
 import cssModules from 'react-css-modules'
-import style from './settingWidget.style.scss'
+import style from '../settingWidget.style.scss'
+import {DatatableSettingView} from './datatableSetting.view'
 
-import {DatatableSettingView} from './component/datatableSetting.view'
-import {TextSettingView} from './component/textSetting.view'
-import {OrgchartSettingView} from './component/orgchartSetting.view'
-let checkType = (type, data) => {
-    switch (type) {
-        case 'TEXT_WIDGET':
-            return <TextSettingView data = {data}/>
-        case 'DATATABLE_WIDGET':
-            return <DatatableSettingView data = {data}/>
-        case 'ORGCHART_WIDGET':
-            return <OrgchartSettingView data = {data}/>
-        case 'TODO_WIDGET':
-            return null
-        default:
-            return null
-    }
-}
-
-export const SettingWidgetView = cssModules(({changeDropdown, typeWidget, cancelClick, data}) => {
+export const SettingDatatableWidgetView = cssModules(({cancelClick, data, activeColumn, disableColumn}) => {
     return (
         <div>
             <div className="panel panel-default" styleName="panel">
@@ -42,12 +25,8 @@ export const SettingWidgetView = cssModules(({changeDropdown, typeWidget, cancel
                         </div>
                         <div styleName="container--type">
                             <ControlLabel styleName="form--label">Widget Type:</ControlLabel>
-                            <FormControl componentClass="select" onChange={changeDropdown} defaultValue={typeWidget}>
-                                <option value="default"></option>
-                                <option value="TEXT_WIDGET">Text</option>
+                            <FormControl componentClass="select" defaultValue={data.widgetType}>
                                 <option value="DATATABLE_WIDGET">Datatable</option>
-                                <option value="ORGCHART_WIDGET">OrgChart</option>
-                                <option value="TODO_WIDGET">ToDos</option>
                             </FormControl>
                         </div>
                         <div styleName="container--width">
@@ -68,9 +47,7 @@ export const SettingWidgetView = cssModules(({changeDropdown, typeWidget, cancel
                         <Button styleName="form--button" onClick={cancelClick}>Cancel</Button>
                     </form>
                 </div>
-                {
-                    checkType(typeWidget, data)
-                }
+                return <DatatableSettingView data = {data} activeColumn = {activeColumn} disableColumn = {disableColumn}/>
             </div>
         </div>
     )

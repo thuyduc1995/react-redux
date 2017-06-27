@@ -1,7 +1,7 @@
 import React from 'react'
 import {DatatableWidgetView} from './datatableWidget.view'
 import {connect} from 'react-redux'
-import {SettingWidget} from '../settingWidget/settingWidget.component'
+import {SettingDatatableWidget} from '../settingWidget/settingDatatableWidget/settingDatatableWidget.component'
 
 @connect(state => ({contact: state.contacts}))
 export class DatatableWidget extends React.Component {
@@ -27,6 +27,6 @@ export class DatatableWidget extends React.Component {
             return <DatatableWidgetView data = {this.props.data} contact = {this.props.contact} settingClick = {this.settingClickEvent} dashboardMode = {this.props.dashboardMode}/>
         }
 
-        return <SettingWidget cancelClick = {this.cancelClickEvent} data = {this.props.data}/>
+        return <SettingDatatableWidget cancelClick = {this.cancelClickEvent} data = {this.props.data}/>
     }
 }
