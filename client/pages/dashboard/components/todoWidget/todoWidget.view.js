@@ -4,7 +4,7 @@ import style from './todoWidget.style.scss'
 import {FormControl, ControlLabel, Button, ListGroup, ListGroupItem} from 'react-bootstrap'
 import {TitleWidgetView} from '../titleWidget.view'
 
-export const TodoWidgetView = cssModules(({data, task, visibility, changeVisibility, settingClick, dashboardMode, addTodo, changeTask}) => {
+export const TodoWidgetView = cssModules(({data, task, visibility, changeVisibility, settingClick, dashboardMode, addTodo, changeTask, removeTask}) => {
     let tempTask = {}
     let itemAll = []
 
@@ -79,7 +79,7 @@ export const TodoWidgetView = cssModules(({data, task, visibility, changeVisibil
                                         </div>
                                         <div styleName="item--content">
                                             <span> {item.task}</span>
-                                            <span className="glyphicon glyphicon-remove" styleName="icon--remove"></span>
+                                            <span className="glyphicon glyphicon-remove" styleName="icon--remove" onClick={() => removeTask(item.id)}></span>
                                         </div>
                                     </ListGroupItem>
                                 )

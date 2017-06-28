@@ -2,7 +2,7 @@ import React from 'react'
 import {TodoWidgetView} from './todoWidget.view'
 import {connect} from 'react-redux'
 import {SettingTodoWidget} from '../settingWidget/settingTodoWidget/settingTodoWidget.component'
-import {addTodoTaskAction, addTodoDashboardAction, changeTaskAction} from './todoWidget.action'
+import {addTodoTaskAction, addTodoDashboardAction, changeTaskAction, removeTaskAction, removeTaskDashboardAction} from './todoWidget.action'
 
 let find = (list, maxId) => {
     list.forEach(item => {
@@ -14,7 +14,7 @@ let find = (list, maxId) => {
     return maxId
 }
 
-@connect(state => ({ task: state.tasks }), ({ addTodoTaskAction, addTodoDashboardAction, changeTaskAction }))
+@connect(state => ({ task: state.tasks }), ({ addTodoTaskAction, addTodoDashboardAction, changeTaskAction, removeTaskAction, removeTaskDashboardAction }))
 
 export class TodoWidget extends React.Component {
     constructor(props) {
@@ -66,7 +66,10 @@ export class TodoWidget extends React.Component {
     changeTaskEvent = (id) => {
         this.props.changeTaskAction(id)
     }
-
+    removeTaskEvent = (id) => {
+        this.props.removeTaskAction(id)
+        this.props.removeTaskDashboardAction(this.props.data.id, id)
+    }
     render() {
         if (this.state.mode === 'display') {
             return <TodoWidgetView data = {this.props.data}
@@ -76,7 +79,8 @@ export class TodoWidget extends React.Component {
                                    settingClick = {this.settingClickEvent}
                                    dashboardMode = {this.props.dashboardMode}
                                    addTodo = {this.addTodoEvent}
-                                   changeTask = {this.changeTaskEvent}/>
+                                   changeTask = {this.changeTaskEvent}
+                                   removeTask = {this.removeTaskEvent}/>
         }
 
             return <SettingTodoWidget cancelClick = {this.cancelClickEvent} data = {this.props.data}/>
