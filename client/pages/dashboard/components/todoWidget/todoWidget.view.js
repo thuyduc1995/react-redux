@@ -4,7 +4,7 @@ import style from './todoWidget.style.scss'
 import {FormControl, ControlLabel, Button, ListGroup, ListGroupItem} from 'react-bootstrap'
 import {TitleWidgetView} from '../titleWidget.view'
 
-export const TodoWidgetView = cssModules(({data, task, visibility, changeVisibility, settingClick, dashboardMode}) => {
+export const TodoWidgetView = cssModules(({data, task, visibility, changeVisibility, settingClick, dashboardMode, addTodo, changeTask}) => {
     let tempTask = {}
     let itemAll = []
 
@@ -16,12 +16,15 @@ export const TodoWidgetView = cssModules(({data, task, visibility, changeVisibil
          })
         itemAll.push(tempTask)
     })
+
+
     let itemCompleted = itemAll.filter(item => {
         return item.isCompleted
     })
     let itemRemaining = itemAll.filter(item => {
         return !item.isCompleted
     })
+
     let visibleChange = (mode) => {
         switch (mode) {
             case 'completed' :
@@ -43,8 +46,9 @@ export const TodoWidgetView = cssModules(({data, task, visibility, changeVisibil
                         type="text"
                         placeholder="What needs to be done?"
                         styleName="form--input"
+                        onKeyDown = {addTodo}
                     />
-                    <ControlLabel styleName="form--first-text ">{itemRemaining.length} Items left</ControlLabel>
+                    <ControlLabel styleName="form--first-text "> Items left</ControlLabel>
                     <Button type="submit" styleName="form--button" value="all" onClick={changeVisibility}>All</Button>
                     <Button type="submit" styleName="form--button" value="active" onClick={changeVisibility}>Active</Button>
                     <Button type="submit" styleName="form--button" value="completed" onClick={changeVisibility}>Completed</Button>
@@ -55,10 +59,11 @@ export const TodoWidgetView = cssModules(({data, task, visibility, changeVisibil
                                 visibleMode.map(item => {
 
                             if (item.isCompleted) {
+
                                 return (
                                     <ListGroupItem styleName="list--item" key= {item.id}>
                                         <div styleName="icon--not-done">
-                                            <span className="glyphicon glyphicon-ok-circle" styleName="icon--done"/>
+                                            <span className="glyphicon glyphicon-ok-circle" styleName="icon--done" onClick={() => changeTask(item.id)}/>
                                         </div>
                                         <div style={{textDecoration: 'line-through', color: '#888888'}} styleName="item--content">
                                             <span> {item.task}</span>
@@ -69,7 +74,7 @@ export const TodoWidgetView = cssModules(({data, task, visibility, changeVisibil
 
                                 return (
                                     <ListGroupItem styleName="list--item" key= {item.id}>
-                                        <div styleName="icon--not-done">
+                                        <div styleName="icon--not-done" onClick={() => changeTask(item.id)}>
                                             <span className="glyphicon glyphicon-ok-circle" styleName="icon--done" style={{display: 'none'}}/>
                                         </div>
                                         <div styleName="item--content">
@@ -88,24 +93,3 @@ export const TodoWidgetView = cssModules(({data, task, visibility, changeVisibil
         </div>
     )
 }, style)
-//
-//
-//     <ListGroupItem styleName="list--item">
-//     <div styleName="icon--not-done">
-//     <span className="glyphicon glyphicon-ok-circle" styleName="icon--done" style={{display: 'none'}}></span>
-// </div>
-// Item 1
-// </ListGroupItem>
-// <ListGroupItem styleName="list--item">
-//     <div styleName="icon--not-done">
-//     <span className="glyphicon glyphicon-ok-circle" styleName="icon--done"></span>
-//     </div>
-//     Item 2
-// </ListGroupItem>
-// <ListGroupItem styleName="list--item">
-//     <div styleName="icon--not-done">
-//     <span className="glyphicon glyphicon-ok-circle" styleName="icon--done" style={{display: 'none'}}></span>
-// </div>
-// Item 3
-// <span className="glyphicon glyphicon-remove" styleName="icon--remove"></span>
-//     </ListGroupItem>

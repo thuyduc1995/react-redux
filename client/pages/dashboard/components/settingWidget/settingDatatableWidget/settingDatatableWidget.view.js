@@ -4,14 +4,13 @@ import cssModules from 'react-css-modules'
 import style from '../settingWidget.style.scss'
 import {DatatableSettingView} from './datatableSetting.view'
 
-export const SettingDatatableWidgetView = cssModules(({cancelClick, data, activeColumn, disableColumn}) => {
+export const SettingDatatableWidgetView = cssModules(({cancelClick, data, activeColumn, disableColumn, changeFromActive, changeToActive}) => {
     return (
         <div>
             <div className="panel panel-default" styleName="panel">
                 <div className="panel-heading" styleName="panel-heading">
                     Widget Settings
-                    <span className="glyphicon glyphicon-remove" styleName="panel-heading--icon"
-                          onClick={cancelClick}></span>
+                    <span className="glyphicon glyphicon-remove" styleName="panel-heading--icon" onClick={cancelClick}/>
                 </div>
                 <div className="panel-body" styleName="panel-body">
                     <form>
@@ -47,9 +46,10 @@ export const SettingDatatableWidgetView = cssModules(({cancelClick, data, active
                         <Button styleName="form--button" onClick={cancelClick}>Cancel</Button>
                     </form>
                 </div>
-                return <DatatableSettingView data = {data} activeColumn = {activeColumn} disableColumn = {disableColumn}/>
+                <DatatableSettingView data = {data} activeColumn = {activeColumn} disableColumn = {disableColumn} changeFromActive = {changeFromActive}
+                                      changeToActive = {changeToActive}
+                />
             </div>
         </div>
     )
 }, style)
-

@@ -6,7 +6,7 @@ import '../../../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysi
 import { EditorState, ContentState } from 'draft-js'
 
 
-export const TextSettingView = cssModules(({data}) => {
+export const TextSettingView = cssModules(({data, onEditorChange}) => {
     const text = 'text' in data.configs ? data.configs.text : ''
     const contentState = ContentState.createFromText(text)
     let editorState = EditorState.createEmpty()
@@ -20,7 +20,8 @@ export const TextSettingView = cssModules(({data}) => {
             <h5 styleName="title--setting-widget">Text Content:</h5>
             <div styleName="text-widget-setting">
                 <Editor
-                    editorState = {editorState}
+                    defaultEditorState = {editorState}
+                    onContentStateChange = {onEditorChange}
                 />
             </div>
         </div>

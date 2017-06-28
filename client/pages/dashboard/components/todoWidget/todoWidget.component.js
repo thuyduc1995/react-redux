@@ -2,16 +2,40 @@ import React from 'react'
 import {TodoWidgetView} from './todoWidget.view'
 import {connect} from 'react-redux'
 import {SettingTodoWidget} from '../settingWidget/settingTodoWidget/settingTodoWidget.component'
+import {addTodoTaskAction, addTodoDashboardAction, changeTaskAction} from './todoWidget.action'
 
-@connect(state => ({task: state.tasks}))
+let find = (list, maxId) => {
+    list.forEach(item => {
+        if (item.id > maxId) {
+            maxId = item.id
+        }
+    })
+
+    return maxId
+}
+
+@connect(state => ({ task: state.tasks }), ({ addTodoTaskAction, addTodoDashboardAction, changeTaskAction }))
+
 export class TodoWidget extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             visibility: 'all',
-            mode: 'display'
+            mode: 'display',
+            task: props.task
         }
     }
+
+    componentWillReceiveProps(nextProps) {
+        console.log('NextPRops', nextProps)
+
+        if (JSON.stringify(nextProps.task) !== JSON.stringify(this.props.task)) {
+            this.setState({
+                    task: nextProps.task
+                })
+        }
+    }
+
     settingClickEvent = (event) => {
         event.preventDefault()
 
@@ -32,10 +56,29 @@ export class TodoWidget extends React.Component {
                 return this.setState({visibility: 'all'})
         }
     }
+    addTodoEvent = (event) => {
+        if (event.keyCode === 13) {
+            let currentId = find(this.props.task, 0)
+
+            this.props.addTodoTaskAction(event.target.value, currentId + 1)
+            this.props.addTodoDashboardAction(this.props.data.id, currentId + 1)
+            event.target.value = ''
+        }
+    }
+    changeTaskEvent = (id) => {
+        this.props.changeTaskAction(id)
+    }
+
     render() {
         if (this.state.mode === 'display') {
-            return <TodoWidgetView data={this.props.data} task={this.props.task} visibility={this.state.visibility}
-                                   changeVisibility={this.changeVisibilityEvent} settingClick={this.settingClickEvent} dashboardMode = {this.props.dashboardMode}/>
+            return <TodoWidgetView data = {this.props.data}
+                                   task={this.state.task}
+                                   visibility = {this.state.visibility}
+                                   changeVisibility={this.changeVisibilityEvent}
+                                   settingClick = {this.settingClickEvent}
+                                   dashboardMode = {this.props.dashboardMode}
+                                   addTodo = {this.addTodoEvent}
+                                   changeTask = {this.changeTaskEvent}/>
         }
 
             return <SettingTodoWidget cancelClick = {this.cancelClickEvent} data = {this.props.data}/>

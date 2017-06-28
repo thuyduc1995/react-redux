@@ -12,17 +12,13 @@ export class Login extends React.Component {
             password: '',
             isWrong: false
         }
-        this.onChange = this.onChange.bind(this)
-        this.onSave = this.onSave.bind(this)
     }
-    onChange(event) {
+    onChange = (event) => {
         let { name, value } = event.target
 
-
         return this.setState({ [name]: value })
-
     }
-    onSave(event) {
+    onSave = (event) => {
         event.preventDefault()
         let { username, password } = this.state
 

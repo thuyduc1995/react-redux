@@ -7,7 +7,7 @@ let array1 = ['Contacts', 'Dashboards', 'Todos']
 
 const newArray = array1.map(item => <option value={item}>{item}</option>)
 
-export const DatatableSettingView = cssModules(({activeColumn, disableColumn}) => {
+export const DatatableSettingView = cssModules(({activeColumn, disableColumn, changeFromActive, changeToActive}) => {
 
     return (
         <div styleName="container--setting-widget">
@@ -21,12 +21,9 @@ export const DatatableSettingView = cssModules(({activeColumn, disableColumn}) =
                     <div styleName="column--Columns--container">
                         {
                             disableColumn.map(column => {
-                                return <div styleName="column--element">{column}</div>
+                                return <div styleName="column--element" onClick = { () => changeToActive(column)}>{column}</div>
                             })
                         }
-                        {/* <div styleName="column--element">ID</div>*/}
-                        {/* <div styleName="column--element">Email</div>*/}
-                        {/* <div styleName="column--element">Phone</div>*/}
                     </div>
                 </div>
                 <div styleName="column--Selected">
@@ -34,25 +31,12 @@ export const DatatableSettingView = cssModules(({activeColumn, disableColumn}) =
                     <div styleName="column--Selected--container">
                         {
                             activeColumn.map(column => {
-                                return <div styleName="column--element">{column}</div>
+                                return <div styleName="column--element" onClick = { () => changeFromActive(column)}>{column}</div>
                             })
                         }
-                        {/* <div styleName="column--element">Name</div>*/}
-                        {/* <div styleName="column--element">Title</div>*/}
                     </div>
                 </div>
             </div>
         </div>
     )
 }, style)
-
-
-//
-//     <div styleName="container--setting-widget">
-//     <h5 styleName="title--setting-widget">Data source:</h5>
-// <FormControl componentClass="select">
-//     <option value="contact">Contacts</option>
-//     <option value="dashboard">Dashboards</option>
-//     <option value="todo">Todos</option>
-//     </FormControl>
-//     </div>
