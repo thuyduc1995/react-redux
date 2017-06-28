@@ -27,8 +27,6 @@ export class TodoWidget extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('NextPRops', nextProps)
-
         if (JSON.stringify(nextProps.task) !== JSON.stringify(this.props.task)) {
             this.setState({
                     task: nextProps.task
