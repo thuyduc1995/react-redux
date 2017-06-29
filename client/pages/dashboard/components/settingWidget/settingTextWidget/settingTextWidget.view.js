@@ -4,7 +4,7 @@ import cssModules from 'react-css-modules'
 import style from '../settingWidget.style.scss'
 import {TextSettingView} from './textSetting.view'
 
-export const SettingTextWidgetView = cssModules(({cancelClick, data, onEditorChange}) => {
+export const SettingTextWidgetView = cssModules(({cancelClick, data, onTitleSettingChange, onTextSettingChange, onSubmitSetting}) => {
     return (
         <div>
             <div className="panel panel-default" styleName="panel">
@@ -20,7 +20,8 @@ export const SettingTextWidgetView = cssModules(({cancelClick, data, onEditorCha
                             <FormControl
                                 type="text"
                                 placeholder="New Widget"
-                                value={data.title}
+                                defaultValue={data.title}
+                                onChange = {onTitleSettingChange}
                             />
                         </div>
                         <div styleName="container--type">
@@ -43,11 +44,11 @@ export const SettingTextWidgetView = cssModules(({cancelClick, data, onEditorCha
                                 placeholder="200"
                             />
                         </div>
-                        <Button bsStyle="primary" styleName="form--button">OK</Button>
+                        <Button bsStyle="primary" styleName="form--button" onClick = {onSubmitSetting}>OK</Button>
                         <Button styleName="form--button" onClick={cancelClick}>Cancel</Button>
                     </form>
                 </div>
-                <TextSettingView data = {data} onEditorChange = {onEditorChange}/>
+                <TextSettingView data = {data} onTextSettingChange = {onTextSettingChange}/>
             </div>
         </div>
     )

@@ -3,7 +3,7 @@ import {Button, ControlLabel, FormControl} from 'react-bootstrap'
 import cssModules from 'react-css-modules'
 import style from '../settingWidget.style.scss'
 
-export const SettingTodoWidgetView = cssModules(({cancelClick, data}) => {
+export const SettingTodoWidgetView = cssModules(({cancelClick, data, onTitleSettingChange, onSubmitSetting}) => {
     return (
         <div>
             <div className="panel panel-default" styleName="panel">
@@ -19,7 +19,8 @@ export const SettingTodoWidgetView = cssModules(({cancelClick, data}) => {
                             <FormControl
                                 type="text"
                                 placeholder="New Widget"
-                                value={data.title}
+                                defaultValue={data.title}
+                                onChange = {onTitleSettingChange}
                             />
                         </div>
                         <div styleName="container--type">
@@ -42,7 +43,7 @@ export const SettingTodoWidgetView = cssModules(({cancelClick, data}) => {
                                 placeholder="200"
                             />
                         </div>
-                        <Button bsStyle="primary" styleName="form--button">OK</Button>
+                        <Button bsStyle="primary" styleName="form--button" onClick = {onSubmitSetting}>OK</Button>
                         <Button styleName="form--button" onClick={cancelClick}>Cancel</Button>
                     </form>
                 </div>

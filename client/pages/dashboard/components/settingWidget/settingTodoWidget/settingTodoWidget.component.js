@@ -8,6 +8,6 @@ export class SettingTodoWidget extends React.Component {
     }
 
     render() {
-        return <SettingTodoWidgetView cancelClick = {this.props.cancelClick} data = {this.props.data}/>
+        return <SettingTodoWidgetView cancelClick = {this.props.cancelClick} data = {this.props.data} onTitleSettingChange = {this.props.onTitleSettingChange} onSubmitSetting = {this.props.onSubmitSetting}/>
     }
 }

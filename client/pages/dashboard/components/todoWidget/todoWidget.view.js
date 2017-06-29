@@ -4,7 +4,7 @@ import style from './todoWidget.style.scss'
 import {FormControl, ControlLabel, Button, ListGroup, ListGroupItem} from 'react-bootstrap'
 import {TitleWidgetView} from '../titleWidget.view'
 
-export const TodoWidgetView = cssModules(({data, task, visibility, changeVisibility, settingClick, dashboardMode, addTodo, changeTask, removeTask}) => {
+export const TodoWidgetView = cssModules(({data, task, visibility, changeVisibility, settingClick, dashboardMode, addTodo, changeTask, removeTask, clearCompleted}) => {
     let tempTask = {}
     let itemAll = []
 
@@ -48,11 +48,11 @@ export const TodoWidgetView = cssModules(({data, task, visibility, changeVisibil
                         styleName="form--input"
                         onKeyDown = {addTodo}
                     />
-                    <ControlLabel styleName="form--first-text "> Items left</ControlLabel>
+                    <ControlLabel styleName="form--first-text ">{itemRemaining.length} Items left</ControlLabel>
                     <Button type="submit" styleName="form--button" value="all" onClick={changeVisibility}>All</Button>
                     <Button type="submit" styleName="form--button" value="active" onClick={changeVisibility}>Active</Button>
                     <Button type="submit" styleName="form--button" value="completed" onClick={changeVisibility}>Completed</Button>
-                    <ControlLabel styleName="form--last-text">Clear Completed</ControlLabel>
+                    <ControlLabel styleName="form--last-text" onClick = {() => clearCompleted(itemCompleted)}>Clear Completed</ControlLabel>
                     <div styleName="list--container">
                         <ListGroup fill>
                             {

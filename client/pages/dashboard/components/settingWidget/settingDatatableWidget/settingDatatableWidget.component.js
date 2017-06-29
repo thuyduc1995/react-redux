@@ -3,13 +3,16 @@ import {SettingDatatableWidgetView} from './settingDatatableWidget.view'
 import {connect} from 'react-redux'
 import {difference} from 'underscore'
 
-@connect(state => ({contact: state.contacts}))
+@connect(state => ({ contact: state.contacts, stock: state.stocks }))
 export class SettingDatatableWidget extends React.Component {
     constructor(props) {
         super(props)
+        let activeColumn = Object.assign([], this.props.data.configs.activeColumn)
+        let disableColumn = Object.assign([], difference(Object.keys(this.props.contact[0]), this.props.data.configs.activeColumn))
+
         this.state = {
-            activeColumn: this.props.data.configs.activeColumn,
-            disableColumn: difference(Object.keys(this.props.contact[0]), this.props.data.configs.activeColumn)
+            activeColumn,
+            disableColumn
         }
     }
     changeFromActiveEvent = (column) => {

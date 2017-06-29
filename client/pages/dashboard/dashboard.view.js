@@ -7,6 +7,7 @@ import {AddWidget} from './components/addWidget/addWidget.component'
 import {TextWidget} from './components/textWidget/textWidget.component'
 import {TodoWidget} from './components/todoWidget/todoWidget.component'
 import {DatatableWidget} from './components/datatableWidget/datatableWidget.component'
+import {OrgchartWidget} from './components/orgchartWidget/orgchartWidget.component'
 
 export const DashboardView = cssModules(({dashboard, changeViewMode, changeEditMode, dashboardMode}) => {
 return (
@@ -39,6 +40,8 @@ return (
                                 return <DatatableWidget data={obj} dashboardMode={dashboardMode} key={obj.id}/>
                             case 'TODO_WIDGET':
                                 return <TodoWidget data={obj} dashboardMode={dashboardMode} key={obj.id}/>
+                            case 'ORGCHART_WIDGET':
+                                return <OrgchartWidget data={obj} dashboardMode={dashboardMode} key={obj.id}/>
                             default:
                                 return <AddWidget data={obj} dashboardMode={dashboardMode} key={obj.id}/>
                         }

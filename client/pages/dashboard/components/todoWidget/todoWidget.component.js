@@ -2,9 +2,11 @@ import React from 'react'
 import {TodoWidgetView} from './todoWidget.view'
 import {connect} from 'react-redux'
 import {SettingTodoWidget} from '../settingWidget/settingTodoWidget/settingTodoWidget.component'
-import {addTodoTaskAction, addTodoDashboardAction, changeTaskAction, removeTaskAction, removeTaskDashboardAction} from './todoWidget.action'
+import {addTodoTaskAction, addTodoDashboardAction, changeTaskAction, removeTaskAction, removeTaskDashboardAction, changeSettingTodoAction} from './todoWidget.action'
 
-let find = (list, maxId) => {
+let find = (list) => {
+    let maxId = 0
+
     list.forEach(item => {
         if (item.id > maxId) {
             maxId = item.id
@@ -14,7 +16,7 @@ let find = (list, maxId) => {
     return maxId
 }
 
-@connect(state => ({ task: state.tasks }), ({ addTodoTaskAction, addTodoDashboardAction, changeTaskAction, removeTaskAction, removeTaskDashboardAction }))
+@connect(state => ({ task: state.tasks }), ({ addTodoTaskAction, addTodoDashboardAction, changeTaskAction, removeTaskAction, removeTaskDashboardAction, changeSettingTodoAction }))
 
 export class TodoWidget extends React.Component {
     constructor(props) {
@@ -22,7 +24,8 @@ export class TodoWidget extends React.Component {
         this.state = {
             visibility: 'all',
             mode: 'display',
-            task: props.task
+            task: props.task,
+            titleSetting: this.props.data.title
         }
     }
 
@@ -56,7 +59,7 @@ export class TodoWidget extends React.Component {
     }
     addTodoEvent = (event) => {
         if (event.keyCode === 13) {
-            let currentId = find(this.props.task, 0)
+            let currentId = find(this.props.task)
 
             this.props.addTodoTaskAction(event.target.value, currentId + 1)
             this.props.addTodoDashboardAction(this.props.data.id, currentId + 1)
@@ -70,6 +73,20 @@ export class TodoWidget extends React.Component {
         this.props.removeTaskAction(id)
         this.props.removeTaskDashboardAction(this.props.data.id, id)
     }
+    clearCompletedEvent = (tasks) => {
+        tasks.forEach(task => {
+            this.props.removeTaskAction(task.id)
+            this.props.removeTaskDashboardAction(this.props.data.id, task.id)
+        })
+    }
+    onTitleSettingChangeEvent = (event) => {
+        return this.setState({ titleSetting: event.target.value })
+    }
+    onSubmitSettingEvent = () => {
+        this.props.changeSettingTodoAction(this.state.titleSetting, this.props.data.id)
+
+        return this.setState({mode: 'display'})
+    }
     render() {
         if (this.state.mode === 'display') {
             return <TodoWidgetView data = {this.props.data}
@@ -80,10 +97,11 @@ export class TodoWidget extends React.Component {
                                    dashboardMode = {this.props.dashboardMode}
                                    addTodo = {this.addTodoEvent}
                                    changeTask = {this.changeTaskEvent}
-                                   removeTask = {this.removeTaskEvent}/>
+                                   removeTask = {this.removeTaskEvent}
+                                   clearCompleted = {this.clearCompletedEvent}/>
         }
 
-            return <SettingTodoWidget cancelClick = {this.cancelClickEvent} data = {this.props.data}/>
+            return <SettingTodoWidget cancelClick = {this.cancelClickEvent} data = {this.props.data} onTitleSettingChange = {this.onTitleSettingChangeEvent} onSubmitSetting = {this.onSubmitSettingEvent}/>
     }
 }
-//hiugigk
+// hiugigk

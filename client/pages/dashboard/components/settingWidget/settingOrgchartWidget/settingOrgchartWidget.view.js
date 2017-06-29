@@ -52,7 +52,7 @@ export const SettingOrgchartWidgetView = cssModules(({cancelClick, data}) => {
                         <Button styleName="form--button" onClick={cancelClick}>Cancel</Button>
                     </form>
                 </div>
-                return <OrgchartSettingView data = {data}/>
+                <OrgchartSettingView data = {data}/>
             </div>
         </div>
     )

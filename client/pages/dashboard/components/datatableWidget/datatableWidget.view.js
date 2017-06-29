@@ -12,7 +12,7 @@ let renderShowsTotal = (start, to, total) => {
     )
 }
 
-export const DatatableWidgetView = cssModules(({data, contact, settingClick, dashboardMode}) => {
+export const DatatableWidgetView = cssModules(({data, contact, stock, settingClick, dashboardMode}) => {
     // let listField = Object.keys(contact[0])
     let listField = data.configs.activeColumn
 
