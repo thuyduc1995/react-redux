@@ -2,11 +2,11 @@ import React from 'react'
 import cssModules from 'react-css-modules'
 import style from './orgchartWidget.style.scss'
 import {TitleWidgetView} from '../titleWidget.view'
-export const OrgchartWidgetView = cssModules(({data, settingClick, dashboardMode}) => {
+export const OrgchartWidgetView = cssModules(({data, settingClick, dashboardMode, onRemove}) => {
     return (
         <div>
             <div className="panel panel-default" styleName="panel">
-                <TitleWidgetView widgetTitle={data.title} settingClick = {settingClick} dashboardMode = {dashboardMode}/>
+                <TitleWidgetView widgetTitle={data.title} settingClick = {settingClick} dashboardMode = {dashboardMode} onRemove = {onRemove}/>
                 <div className="panel-body" styleName="panel-body">
                     <div styleName="body-content" >
                         {data.configs.text}

@@ -1,11 +1,9 @@
-export const DashboardAction = {
-    'DASHBOARD_CREATION': 'DASHBOARD_CREATION'
-}
+export const REMOVE_WIDGET = 'REMOVE_WIDGET'
 
-export const DashboardActionCreator = {
-    createDashboard: () => {
-        return {
-            type: DashboardAction.DASHBOARD_CREATION
-        }
+export const removeWidgetAction = (widgetId) => {
+    return {
+        type: REMOVE_WIDGET,
+        widgetId
     }
 }
+

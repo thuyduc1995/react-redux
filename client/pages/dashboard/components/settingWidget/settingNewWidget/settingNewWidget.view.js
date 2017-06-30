@@ -6,12 +6,12 @@ import style from '../settingWidget.style.scss'
 import {DatatableSettingView} from '../settingDatatableWidget/datatableSetting.view'
 import {TextSettingView} from '../settingTextWidget/textSetting.view'
 import {OrgchartSettingView} from '../settingOrgchartWidget/orgchartSetting.view'
-let checkType = (type, data) => {
-    switch (type) {
+let checkType = (targetType, data, changeToActive, changeFromActive, text, activeColumn, disableColumn, onTextSettingChange, changeDataSource) => {
+    switch (targetType) {
         case 'TEXT_WIDGET':
-            return <TextSettingView data = {data}/>
+            return <TextSettingView data = {data} onTextSettingChange = {onTextSettingChange}/>
         case 'DATATABLE_WIDGET':
-            return <DatatableSettingView data = {data}/>
+            return <DatatableSettingView changeToActive = {changeToActive} changeFromActive = {changeFromActive} activeColumn = {activeColumn} disableColumn = {disableColumn} changeDataSource = {changeDataSource}/>
         case 'ORGCHART_WIDGET':
             return <OrgchartSettingView data = {data}/>
         case 'TODO_WIDGET':
@@ -21,7 +21,7 @@ let checkType = (type, data) => {
     }
 }
 
-export const SettingNewWidgetView = cssModules(({changeDropdown, typeWidget, cancelClick, data}) => {
+export const SettingNewWidgetView = cssModules(({changeDropdown, targetType, cancelClick, data, onTitleSettingChange, onSubmitSetting, changeToActive, changeFromActive, text, activeColumn, disableColumn, dataSource, onTextSettingChange, changeDataSource}) => {
     return (
         <div>
             <div className="panel panel-default" styleName="panel">
@@ -37,12 +37,13 @@ export const SettingNewWidgetView = cssModules(({changeDropdown, typeWidget, can
                             <FormControl
                                 type="text"
                                 placeholder="New Widget"
-                                value={data.title}
+                                defaultValue = {data.title}
+                                onChange = {onTitleSettingChange}
                             />
                         </div>
                         <div styleName="container--type">
                             <ControlLabel styleName="form--label">Widget Type:</ControlLabel>
-                            <FormControl componentClass="select" onChange={changeDropdown} defaultValue={typeWidget}>
+                            <FormControl componentClass="select" onChange = {changeDropdown} defaultValue = {targetType}>
                                 <option value="default"></option>
                                 <option value="TEXT_WIDGET">Text</option>
                                 <option value="DATATABLE_WIDGET">Datatable</option>
@@ -64,12 +65,12 @@ export const SettingNewWidgetView = cssModules(({changeDropdown, typeWidget, can
                                 placeholder="200"
                             />
                         </div>
-                        <Button bsStyle="primary" styleName="form--button">OK</Button>
+                        <Button bsStyle="primary" styleName="form--button" onClick = {onSubmitSetting}>OK</Button>
                         <Button styleName="form--button" onClick={cancelClick}>Cancel</Button>
                     </form>
                 </div>
                 {
-                    checkType(typeWidget, data)
+                    checkType(targetType, data, changeToActive, changeFromActive, text, activeColumn, disableColumn, onTextSettingChange, changeDataSource)
                 }
             </div>
         </div>

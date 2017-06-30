@@ -4,7 +4,7 @@ import style from './todoWidget.style.scss'
 import {FormControl, ControlLabel, Button, ListGroup, ListGroupItem} from 'react-bootstrap'
 import {TitleWidgetView} from '../titleWidget.view'
 
-export const TodoWidgetView = cssModules(({data, task, visibility, changeVisibility, settingClick, dashboardMode, addTodo, changeTask, removeTask, clearCompleted}) => {
+export const TodoWidgetView = cssModules(({data, task, visibility, changeVisibility, settingClick, dashboardMode, addTodo, changeTask, removeTask, clearCompleted, onRemove}) => {
     let tempTask = {}
     let itemAll = []
 
@@ -40,7 +40,7 @@ export const TodoWidgetView = cssModules(({data, task, visibility, changeVisibil
     return (
         <div>
             <div className="panel panel-default" styleName="panel">
-                <TitleWidgetView widgetTitle = {data.title} settingClick = {settingClick} dashboardMode = {dashboardMode}/>
+                <TitleWidgetView widgetTitle = {data.title} settingClick = {settingClick} dashboardMode = {dashboardMode} onRemove = {onRemove}/>
                 <div className="panel-body" styleName="panel-body">
                     <FormControl
                         type="text"

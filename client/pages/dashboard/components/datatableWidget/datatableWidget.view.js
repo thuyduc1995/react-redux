@@ -7,15 +7,14 @@ import {TitleWidgetView} from '../titleWidget.view'
 let renderShowsTotal = (start, to, total) => {
     return (
         <h4 style={{'paddingLeft': '15px', 'marginBottom': '-20px'}}>
-            { start } to { to } of {total} Contacts
+            { start } to { to } of {total} Results
         </h4>
     )
 }
 
-export const DatatableWidgetView = cssModules(({data, contact, stock, settingClick, dashboardMode}) => {
-    // let listField = Object.keys(contact[0])
+export const DatatableWidgetView = cssModules(({data, contact, stock, settingClick, dashboardMode, dataSource, onRemove}) => {
     let listField = data.configs.activeColumn
-
+    let dataField = dataSource === 'Contacts' ? contact : stock
     const options = {
         page: 1,
         sizePerPage: 5,
@@ -32,9 +31,9 @@ export const DatatableWidgetView = cssModules(({data, contact, stock, settingCli
     return (
         <div>
             <div className="panel panel-default" styleName="panel">
-                <TitleWidgetView widgetTitle={data.title} settingClick = {settingClick} dashboardMode = {dashboardMode}/>
+                <TitleWidgetView widgetTitle={data.title} settingClick = {settingClick} dashboardMode = {dashboardMode} onRemove = {onRemove}/>
                 <div className="panel-body" styleName="panel-body">
-                    <BootstrapTable data={contact} striped hover pagination condensed={true} options={ options } styleName='datatable' bordered={ false }>
+                    <BootstrapTable data={dataField} striped hover pagination condensed={true} options={ options } styleName='datatable' bordered={ false }>
                         <TableHeaderColumn dataField='defaultIsKey' dataSort isKey={true} style={{'display': 'none'}} hidden>First Name</TableHeaderColumn>
                         {
                             listField.map(field => {

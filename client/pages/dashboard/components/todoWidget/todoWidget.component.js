@@ -3,6 +3,7 @@ import {TodoWidgetView} from './todoWidget.view'
 import {connect} from 'react-redux'
 import {SettingTodoWidget} from '../settingWidget/settingTodoWidget/settingTodoWidget.component'
 import {addTodoTaskAction, addTodoDashboardAction, changeTaskAction, removeTaskAction, removeTaskDashboardAction, changeSettingTodoAction} from './todoWidget.action'
+import {removeWidgetAction} from '../../dashboard.action'
 
 let find = (list) => {
     let maxId = 0
@@ -16,7 +17,7 @@ let find = (list) => {
     return maxId
 }
 
-@connect(state => ({ task: state.tasks }), ({ addTodoTaskAction, addTodoDashboardAction, changeTaskAction, removeTaskAction, removeTaskDashboardAction, changeSettingTodoAction }))
+@connect(state => ({ task: state.tasks }), ({ addTodoTaskAction, addTodoDashboardAction, changeTaskAction, removeTaskAction, removeTaskDashboardAction, changeSettingTodoAction, removeWidgetAction }))
 
 export class TodoWidget extends React.Component {
     constructor(props) {
@@ -87,6 +88,9 @@ export class TodoWidget extends React.Component {
 
         return this.setState({mode: 'display'})
     }
+    onRemoveEvent = () => {
+        return this.props.removeWidgetAction(this.props.data.id)
+    }
     render() {
         if (this.state.mode === 'display') {
             return <TodoWidgetView data = {this.props.data}
@@ -98,7 +102,8 @@ export class TodoWidget extends React.Component {
                                    addTodo = {this.addTodoEvent}
                                    changeTask = {this.changeTaskEvent}
                                    removeTask = {this.removeTaskEvent}
-                                   clearCompleted = {this.clearCompletedEvent}/>
+                                   clearCompleted = {this.clearCompletedEvent}
+                                   onRemove = {this.onRemoveEvent}/>
         }
 
             return <SettingTodoWidget cancelClick = {this.cancelClickEvent} data = {this.props.data} onTitleSettingChange = {this.onTitleSettingChangeEvent} onSubmitSetting = {this.onSubmitSettingEvent}/>

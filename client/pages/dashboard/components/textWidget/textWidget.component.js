@@ -3,8 +3,9 @@ import {connect} from 'react-redux'
 import {TextWidgetView} from './textWidget.view'
 import {SettingTextWidget} from '../settingWidget/settingTextWidget/settingTextWidget.component'
 import {changeSettingTextAction} from './textWidget.action'
+import {removeWidgetAction} from '../../dashboard.action'
 
-@connect(state => ({}), ({ changeSettingTextAction }))
+@connect(state => ({}), ({ changeSettingTextAction, removeWidgetAction }))
 export class TextWidget extends React.Component {
     constructor(props) {
         super(props)
@@ -35,11 +36,14 @@ export class TextWidget extends React.Component {
 
         return this.setState({mode: 'display'})
     }
+    onRemoveEvent = () => {
+        return this.props.removeWidgetAction(this.props.data.id)
+    }
 
     render() {
         if (this.state.mode === 'display')
         {
-            return <TextWidgetView data = {this.props.data} settingClick = {this.settingClickEvent} dashboardMode = {this.props.dashboardMode}/>
+            return <TextWidgetView data = {this.props.data} settingClick = {this.settingClickEvent} dashboardMode = {this.props.dashboardMode} onRemove = {this.onRemoveEvent}/>
         }
 
             return <SettingTextWidget cancelClick = {this.cancelClickEvent} data = {this.props.data} onTitleSettingChange = {this.onTitleSettingChangeEvent}

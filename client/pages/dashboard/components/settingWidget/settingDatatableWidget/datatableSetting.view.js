@@ -3,17 +3,20 @@ import cssModules from 'react-css-modules'
 import style from '../settingWidget.style.scss'
 import { FormControl } from 'react-bootstrap'
 
-let array1 = ['Contacts', 'Dashboards', 'Todos']
 
-const newArray = array1.map(item => <option value={item}>{item}</option>)
+export const DatatableSettingView = cssModules(({activeColumn, disableColumn, changeFromActive, changeToActive, dataSource, changeDataSource}) => {
+    let defaultSource = ['Contacts', 'Stocks']
 
-export const DatatableSettingView = cssModules(({activeColumn, disableColumn, changeFromActive, changeToActive}) => {
 
-    return (
+return (
         <div styleName="container--setting-widget">
             <h5 styleName="title--setting-widget">Data source:</h5>
-            <FormControl componentClass="select">
-                {newArray}
+            <FormControl componentClass="select" onChange = {changeDataSource}>
+                {
+                    typeof (dataSource) !== "undefined" ?
+                        <option value = {dataSource}>{dataSource}</option> :
+                        defaultSource.map(src => { return <option value = {src}>{src}</option> })
+                }
             </FormControl>
             <div styleName="column-selection--container">
                 <div styleName="column--Columns">
@@ -40,3 +43,4 @@ export const DatatableSettingView = cssModules(({activeColumn, disableColumn, ch
         </div>
     )
 }, style)
+

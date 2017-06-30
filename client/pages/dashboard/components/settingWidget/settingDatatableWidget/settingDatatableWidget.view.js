@@ -4,7 +4,7 @@ import cssModules from 'react-css-modules'
 import style from '../settingWidget.style.scss'
 import {DatatableSettingView} from './datatableSetting.view'
 
-export const SettingDatatableWidgetView = cssModules(({cancelClick, data, activeColumn, disableColumn, changeFromActive, changeToActive}) => {
+export const SettingDatatableWidgetView = cssModules(({cancelClick, data, activeColumn, disableColumn, changeFromActive, changeToActive, dataSource, onTitleSettingChange, onSubmitSetting}) => {
     return (
         <div>
             <div className="panel panel-default" styleName="panel">
@@ -19,7 +19,8 @@ export const SettingDatatableWidgetView = cssModules(({cancelClick, data, active
                             <FormControl
                                 type="text"
                                 placeholder="New Widget"
-                                value={data.title}
+                                defaultValue={data.title}
+                                onChange = {onTitleSettingChange}
                             />
                         </div>
                         <div styleName="container--type">
@@ -42,12 +43,12 @@ export const SettingDatatableWidgetView = cssModules(({cancelClick, data, active
                                 placeholder="200"
                             />
                         </div>
-                        <Button bsStyle="primary" styleName="form--button">OK</Button>
+                        <Button bsStyle="primary" styleName="form--button" onClick = {onSubmitSetting}>OK</Button>
                         <Button styleName="form--button" onClick={cancelClick}>Cancel</Button>
                     </form>
                 </div>
                 <DatatableSettingView data = {data} activeColumn = {activeColumn} disableColumn = {disableColumn} changeFromActive = {changeFromActive}
-                                      changeToActive = {changeToActive}
+                                      changeToActive = {changeToActive} dataSource = {dataSource}
                 />
             </div>
         </div>
