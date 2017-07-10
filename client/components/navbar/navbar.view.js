@@ -1,14 +1,13 @@
 import React from 'react'
 import {Link} from 'react-router'
-import {Navbar, Nav, NavItem, Button, DropdownButton, MenuItem} from 'react-bootstrap'
-import {LinkContainer} from 'react-router-bootstrap'
+import {Navbar, Nav, DropdownButton, MenuItem} from 'react-bootstrap'
 import style from './navbar.style.scss'
 import cssModules from 'react-css-modules'
 
 
 export const NavbarView = cssModules(() => {
     return (
-        <Navbar inverse fixedTop fluid styleName= 'navbar'>
+        <Navbar inverse fixedTop fluid styleName = 'navbar'>
             <Navbar.Header>
                 <Navbar.Brand>
                     <span className="glyphicon glyphicon-dashboard" styleName="navbar__brand"></span>
@@ -23,4 +22,5 @@ export const NavbarView = cssModules(() => {
             </Nav>
         </Navbar>
     )
-}, style)
+}, style, {errorWhenNotFound: false})
+

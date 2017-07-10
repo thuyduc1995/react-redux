@@ -1,12 +1,13 @@
-import React from 'react';
-// import HelloMessage from './HelloMessage';
-import { shallow } from 'enzyme';
-import { expect } from 'chai';
+import React from 'react'
+import { expect } from 'chai'
+import { shallow } from 'enzyme'
+import { DashboardView } from '../dashboard.view'
 
-describe('HelloMessage', () => {
-    it('HelloMessage not null', () => {
-        // let wrapper = shallow(<HelloMessage name='thanh' />);
+describe('test dashboard', () => {
+    it('should have an ButtonGrop ', () => {
 
-        expect(true).to.equal(true);
-    });
-});
+        const wrapper = shallow(<DashboardView/>)
+
+        expect(true).to.equals(true)
+    })
+})
