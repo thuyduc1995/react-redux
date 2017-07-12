@@ -12,9 +12,10 @@ let renderShowsTotal = (start, to, total) => {
     )
 }
 
-export const DatatableWidgetView = cssModules(({data, contact, stock, settingClick, dashboardMode, dataSource, onRemove}) => {
+export const DatatableWidgetView = cssModules(({data, contact, stock, settingClick, dashboardMode, dataSource, onRemove, layoutType}) => {
     let listField = data.configs.activeColumn
     let dataField = dataSource === 'Contacts' ? contact : stock
+    let layout = ''
     const options = {
         page: 1,
         sizePerPage: 5,
@@ -28,8 +29,22 @@ export const DatatableWidgetView = cssModules(({data, contact, stock, settingCli
         paginationShowsTotal: renderShowsTotal
     }
 
+    switch (layoutType) {
+        case '1_COLUMN':
+            layout = 'col-md-8'
+            break
+        case '2_COLUMN':
+            layout = 'col-md-6'
+            break
+        case '3_COLUMN':
+            layout = 'col-md-4'
+            break
+        default:
+            break
+    }
+
     return (
-        <div>
+        <div className={layout}>
             <div className="panel panel-default" styleName="panel">
                 <TitleWidgetView widgetTitle={data.title} settingClick = {settingClick} dashboardMode = {dashboardMode} onRemove = {onRemove}/>
                 <div className="panel-body" styleName="panel-body">

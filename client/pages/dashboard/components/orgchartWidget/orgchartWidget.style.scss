@@ -6,7 +6,7 @@
   width: 600px !important;
   height: 270px !important;
   border-radius: 0;
-
+  margin: 0 auto 20px auto;
 }
 .panel-heading{
   background-color: #245380 !important;
@@ -21,9 +21,207 @@
 .panel-body{
   margin: auto;
   height: 227px !important;
+
 }
 .panel-heading--icon{
   float: right;
   font-size: 15px;
   margin-left: 10px;
 }
+
+
+* {
+  box-sizing: border-box;
+}
+/*Now the CSS*/
+* {
+  margin: 0;
+  padding: 0;
+}
+.tree {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  transform:scale(0.3);
+}
+.tree ul {
+  padding-top: 20px;
+  position: relative;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+}
+.tree li {
+  float: left;
+  text-align: center;
+  list-style-type: none;
+  position: relative;
+  padding: 20px 5px 0 5px;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+
+}
+/*We will use ::before and ::after to draw the connectors*/
+.tree li::before, .tree li::after {
+  content:'';
+  position: absolute;
+  top: 0;
+  right: 50%;
+  border-top: 1px solid #ccc;
+  width: 50%;
+  height: 20px;
+}
+.tree li:after {
+  right: auto;
+  left: 50%;
+  border-left: 1px solid #ccc;
+}
+/*We need to remove left-right connectors from elements without
+any siblings*/
+.tree li:only-child::after, .tree li:only-child::before {
+  display: none;
+}
+/*Remove space from the top of single children*/
+.tree li:only-child {
+  padding-top: 0;
+}
+/*Remove left connector from first child and
+right connector from last child*/
+.tree li:first-child::before, .tree li:last-child::after {
+  border: 0 none;
+}
+/*Adding back the vertical connector to the last nodes*/
+.tree li:last-child::before {
+  border-right: 1px solid #ccc;
+  border-radius: 0 5px 0 0;
+  -webkit-border-radius: 0 5px 0 0;
+  -moz-border-radius: 0 5px 0 0;
+}
+.tree li:first-child::after {
+  border-radius: 5px 0 0 0;
+  -webkit-border-radius: 5px 0 0 0;
+  -moz-border-radius: 5px 0 0 0;
+}
+/*Time to add downward connectors from parents*/
+.tree ul ul::before {
+  content:'';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  border-left: 1px solid #ccc;
+  width: 0;
+  height: 20px;
+  margin-left: -1px;
+}
+.tree li a {
+  text-decoration: none;
+  display: inline-flex;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+
+}
+/*Time for some hover effects*/
+/*We will apply the hover effect the the lineage of the element also*/
+.tree li a:hover, .tree li a:hover+ul li a {
+  background: #c8e4f8;
+  color: #000;
+  border: 1px solid #94a0b4;
+}
+/*Connector styles on hover*/
+.tree li a:hover+ul li::after, .tree li a:hover+ul li::before, .tree li a:hover+ul::before, .tree li a:hover+ul ul::before {
+  border-color: #94a0b4;
+}
+li a.just-line {
+  display: none;
+}
+a.just-line + ul {
+  padding-top: 74px;
+}
+a.just-line + ul:before {
+  height: 74px;
+}
+
+
+.card{
+  width: 340px;
+  height: 130px;
+  display: -webkit-flex;
+  display: inline-flex;
+  border-radius: 3px;
+  border: 1px solid red;
+
+
+}
+
+.card__container--left{
+  width: 90px;
+  height: 90%;
+  margin-top : 6px;
+  margin-left : 10px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+
+}
+
+.card__image{
+  width:86%;
+  height: 86%;
+  margin:auto;
+}
+.card__container--middle{
+  margin-left: 10px;
+  width: 220px;
+  height: 100%;
+  text-align: left;
+}
+.card__container--right{
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  width: 30px;
+  height: 100%;
+  display: none;
+}
+.card__name{
+  color: blue;
+}
+.card__dept{
+  margin-top: 5px;
+  font-size: 1.4em;
+  font-style: italic;
+}
+.card__email--head{
+  margin-top: 5px;
+  font-size: 1.6em;
+  text-decoration: underline;
+  color: red;
+}
+.card__email--tail{
+  forn-size:0.7em;
+
+}
+.img_a{
+  display: block;
+  margin: auto;
+  margin-top: -10px;
+  margin-bottom: 0;
+  width: 30px;
+  height:auto;
+}
+
+
+
+
+
+
+
+

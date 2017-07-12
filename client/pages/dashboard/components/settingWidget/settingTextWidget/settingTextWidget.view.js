@@ -4,9 +4,25 @@ import cssModules from 'react-css-modules'
 import style from '../settingWidget.style.scss'
 import {TextSettingView} from './textSetting.view'
 
-export const SettingTextWidgetView = cssModules(({cancelClick, data, onTitleSettingChange, onTextSettingChange, onSubmitSetting}) => {
+export const SettingTextWidgetView = cssModules(({cancelClick, data, onTitleSettingChange, onTextSettingChange, onSubmitSetting, layoutType}) => {
+    let layout = ''
+
+    switch (layoutType) {
+        case '1_COLUMN':
+            layout = 'col-md-8'
+            break
+        case '2_COLUMN':
+            layout = 'col-md-6'
+            break
+        case '3_COLUMN':
+            layout = 'col-md-4'
+            break
+        default:
+            break
+    }
+
     return (
-        <div>
+        <div className={layout}>
             <div className="panel panel-default" styleName="panel">
                 <div className="panel-heading" styleName="panel-heading">
                     Widget Settings

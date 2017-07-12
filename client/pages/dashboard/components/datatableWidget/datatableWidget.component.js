@@ -82,7 +82,7 @@ export class DatatableWidget extends React.Component {
                                         dashboardMode = {this.props.dashboardMode}
                                         dataSource = {this.state.dataSource}
                                         onRemove = {this.onRemoveEvent}
-            />
+                                        layoutType={this.props.layoutType}/>
         }
 
             return <SettingDatatableWidgetView cancelClick = {this.cancelClickEvent}
@@ -94,6 +94,6 @@ export class DatatableWidget extends React.Component {
                                                dataSource = {this.state.dataSource}
                                                onTitleSettingChange = {this.onTitleSettingChangeEvent}
                                                onSubmitSetting = {this.onSubmitSettingEvent}
-            />
+                                               layoutType={this.props.layoutType}/>
     }
 }

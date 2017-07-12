@@ -39,15 +39,22 @@ export class TextWidget extends React.Component {
     onRemoveEvent = () => {
         return this.props.removeWidgetAction(this.props.data.id)
     }
-
     render() {
         if (this.state.mode === 'display')
         {
-            return <TextWidgetView data = {this.props.data} settingClick = {this.settingClickEvent} dashboardMode = {this.props.dashboardMode} onRemove = {this.onRemoveEvent}/>
+            return <TextWidgetView data={this.props.data}
+                                   settingClick={this.settingClickEvent}
+                                   dashboardMode={this.props.dashboardMode}
+                                   onRemove={this.onRemoveEvent}
+                                   layoutType={this.props.layoutType}/>
         }
 
-            return <SettingTextWidget cancelClick = {this.cancelClickEvent} data = {this.props.data} onTitleSettingChange = {this.onTitleSettingChangeEvent}
-                                      onTextSettingChange = {this.onTextSettingChangeEvent} onSubmitSetting = {this.onSubmitSettingEvent}/>
+            return <SettingTextWidget cancelClick={this.cancelClickEvent}
+                                      data={this.props.data}
+                                      onTitleSettingChange={this.onTitleSettingChangeEvent}
+                                      onTextSettingChange={this.onTextSettingChangeEvent}
+                                      onSubmitSetting={this.onSubmitSettingEvent}
+                                      layoutType={this.props.layoutType}/>
     }
 }
 

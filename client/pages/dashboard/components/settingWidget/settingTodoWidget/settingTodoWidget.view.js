@@ -3,9 +3,25 @@ import {Button, ControlLabel, FormControl} from 'react-bootstrap'
 import cssModules from 'react-css-modules'
 import style from '../settingWidget.style.scss'
 
-export const SettingTodoWidgetView = cssModules(({cancelClick, data, onTitleSettingChange, onSubmitSetting}) => {
+export const SettingTodoWidgetView = cssModules(({cancelClick, data, onTitleSettingChange, onSubmitSetting, layoutType}) => {
+    let layout = ''
+
+    switch (layoutType) {
+        case '1_COLUMN':
+            layout = 'col-md-8'
+            break
+        case '2_COLUMN':
+            layout = 'col-md-6'
+            break
+        case '3_COLUMN':
+            layout = 'col-md-4'
+            break
+        default:
+            break
+    }
+
     return (
-        <div>
+        <div className={layout}>
             <div className="panel panel-default" styleName="panel">
                 <div className="panel-heading" styleName="panel-heading">
                     Widget Settings

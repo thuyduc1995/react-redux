@@ -4,9 +4,25 @@ import cssModules from 'react-css-modules'
 import style from '../settingWidget.style.scss'
 import {DatatableSettingView} from './datatableSetting.view'
 
-export const SettingDatatableWidgetView = cssModules(({cancelClick, data, activeColumn, disableColumn, changeFromActive, changeToActive, dataSource, onTitleSettingChange, onSubmitSetting}) => {
+export const SettingDatatableWidgetView = cssModules(({cancelClick, data, activeColumn, disableColumn, changeFromActive, changeToActive, dataSource, onTitleSettingChange, onSubmitSetting, layoutType}) => {
+    let layout = ''
+
+    switch (layoutType) {
+        case '1_COLUMN':
+            layout = 'col-md-8'
+            break
+        case '2_COLUMN':
+            layout = 'col-md-6'
+            break
+        case '3_COLUMN':
+            layout = 'col-md-4'
+            break
+        default:
+            break
+    }
+
     return (
-        <div>
+        <div className={layout}>
             <div className="panel panel-default" styleName="panel">
                 <div className="panel-heading" styleName="panel-heading">
                     Widget Settings

@@ -28,10 +28,16 @@ export class OrgchartWidget extends React.Component {
     render() {
         if (this.state.mode === 'display')
         {
-            return <OrgchartWidgetView data = {this.props.data} settingClick = {this.settingClickEvent} dashboardMode = {this.props.dashboardMode} onRemove = {this.onRemoveEvent}/>
+            return <OrgchartWidgetView data={this.props.data}
+                                       settingClick={this.settingClickEvent}
+                                       dashboardMode={this.props.dashboardMode}
+                                       onRemove={this.onRemoveEvent}
+                                       layoutType={this.props.layoutType}/>
         }
 
-            return <SettingOrgchartWidget cancelClick = {this.cancelClickEvent} data = {this.props.data}/>
+            return <SettingOrgchartWidget cancelClick = {this.cancelClickEvent}
+                                          data = {this.props.data}
+                                          layoutType={this.props.layoutType}/>
     }
 }
 

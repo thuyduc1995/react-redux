@@ -93,20 +93,25 @@ export class TodoWidget extends React.Component {
     }
     render() {
         if (this.state.mode === 'display') {
-            return <TodoWidgetView data = {this.props.data}
+            return <TodoWidgetView data={this.props.data}
                                    task={this.state.task}
-                                   visibility = {this.state.visibility}
+                                   visibility={this.state.visibility}
                                    changeVisibility={this.changeVisibilityEvent}
-                                   settingClick = {this.settingClickEvent}
-                                   dashboardMode = {this.props.dashboardMode}
-                                   addTodo = {this.addTodoEvent}
-                                   changeTask = {this.changeTaskEvent}
-                                   removeTask = {this.removeTaskEvent}
-                                   clearCompleted = {this.clearCompletedEvent}
-                                   onRemove = {this.onRemoveEvent}/>
+                                   settingClick={this.settingClickEvent}
+                                   dashboardMode={this.props.dashboardMode}
+                                   addTodo={this.addTodoEvent}
+                                   changeTask={this.changeTaskEvent}
+                                   removeTask={this.removeTaskEvent}
+                                   clearCompleted={this.clearCompletedEvent}
+                                   onRemove={this.onRemoveEvent}
+                                   layoutType={this.props.layoutType}/>
         }
 
-            return <SettingTodoWidget cancelClick = {this.cancelClickEvent} data = {this.props.data} onTitleSettingChange = {this.onTitleSettingChangeEvent} onSubmitSetting = {this.onSubmitSettingEvent}/>
+            return <SettingTodoWidget cancelClick={this.cancelClickEvent}
+                                      data={this.props.data}
+                                      onTitleSettingChange={this.onTitleSettingChangeEvent}
+                                      onSubmitSetting={this.onSubmitSettingEvent}
+                                      layoutType={this.props.layoutType}/>
     }
 }
 // hiugigk

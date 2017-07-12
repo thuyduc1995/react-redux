@@ -11,6 +11,10 @@ export class SettingNewWidget extends React.Component {
 
 
     render() {
-        return <SettingNewWidgetView changeDropdown={this.changeDropdown} typeWidget = {this.state.targetType} cancelClick = {this.props.cancelClick} data = {this.props.data}/>
+        return <SettingNewWidgetView changeDropdown={this.changeDropdown}
+                                     typeWidget={this.state.targetType}
+                                     cancelClick={this.props.cancelClick}
+                                     data={this.props.data}
+                                     layoutType={this.props.layoutType}/>
     }
 }

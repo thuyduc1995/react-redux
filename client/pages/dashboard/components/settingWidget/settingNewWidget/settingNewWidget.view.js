@@ -21,9 +21,25 @@ let checkType = (targetType, data, changeToActive, changeFromActive, text, activ
     }
 }
 
-export const SettingNewWidgetView = cssModules(({changeDropdown, targetType, cancelClick, data, onTitleSettingChange, onSubmitSetting, changeToActive, changeFromActive, text, activeColumn, disableColumn, dataSource, onTextSettingChange, changeDataSource}) => {
+export const SettingNewWidgetView = cssModules(({changeDropdown, targetType, cancelClick, data, onTitleSettingChange, onSubmitSetting, changeToActive, changeFromActive, text, activeColumn, disableColumn, dataSource, onTextSettingChange, changeDataSource, layoutType}) => {
+    let layout = ''
+
+    switch (layoutType) {
+        case '1_COLUMN':
+            layout = 'col-md-8'
+            break
+        case '2_COLUMN':
+            layout = 'col-md-6'
+            break
+        case '3_COLUMN':
+            layout = 'col-md-4'
+            break
+        default:
+            break
+    }
+
     return (
-        <div>
+        <div className={layout}>
             <div className="panel panel-default" styleName="panel">
                 <div className="panel-heading" styleName="panel-heading">
                     Widget Settings

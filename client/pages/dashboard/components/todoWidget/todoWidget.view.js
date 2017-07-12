@@ -4,7 +4,7 @@ import style from './todoWidget.style.scss'
 import {FormControl, ControlLabel, Button, ListGroup, ListGroupItem} from 'react-bootstrap'
 import {TitleWidgetView} from '../titleWidget.view'
 
-export const TodoWidgetView = cssModules(({data, task, visibility, changeVisibility, settingClick, dashboardMode, addTodo, changeTask, removeTask, clearCompleted, onRemove}) => {
+export const TodoWidgetView = cssModules(({data, task, visibility, changeVisibility, settingClick, dashboardMode, addTodo, changeTask, removeTask, clearCompleted, onRemove, layoutType}) => {
     let tempTask = {}
     let itemAll = []
 
@@ -36,9 +36,24 @@ export const TodoWidgetView = cssModules(({data, task, visibility, changeVisibil
         }
     }
     let visibleMode = visibleChange(visibility)
+    let layout = ''
+
+    switch (layoutType) {
+        case '1_COLUMN':
+            layout = 'col-md-8'
+            break
+        case '2_COLUMN':
+            layout = 'col-md-6'
+            break
+        case '3_COLUMN':
+            layout = 'col-md-4'
+            break
+        default:
+            break
+    }
 
     return (
-        <div>
+        <div className={layout}>
             <div className="panel panel-default" styleName="panel">
                 <TitleWidgetView widgetTitle = {data.title} settingClick = {settingClick} dashboardMode = {dashboardMode} onRemove = {onRemove}/>
                 <div className="panel-body" styleName="panel-body">

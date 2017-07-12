@@ -86,11 +86,12 @@ export class AddWidget extends React.Component {
         this.setState({ targetSource: event.target.value})
         this.setState({disableColumn: event.target.value === 'Stocks' ? difference(Object.keys(this.props.stock[0]), []).map(item => item) :
             difference(Object.keys(this.props.contact[0]), []).map(item => item)})
+        this.setState({activeColumn: []})
     }
     render() {
         if (this.state.mode === 'display')
         {
-            return <AddWidgetView settingClick={this.settingClickEvent} dashboardMode = {this.props.dashboardMode}/>
+            return <AddWidgetView settingClick={this.settingClickEvent} dashboardMode={this.props.dashboardMode} layoutType={this.props.layoutType}/>
         }
 
             return <SettingNewWidgetView cancelClick = {this.cancelClickEvent}
@@ -107,6 +108,6 @@ export class AddWidget extends React.Component {
                                          dataSource = {this.state.dataSource}
                                          onTextSettingChange = {this.onTextSettingChangeEvent}
                                          changeDataSource = {this.changeDataSourceEvent}
-            />
+                                         layoutType={this.props.layoutType}/>
     }
 }
