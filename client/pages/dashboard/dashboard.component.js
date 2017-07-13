@@ -4,8 +4,6 @@ import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import { changeLayoutAction } from './dashboard.action'
 
-
-
 @connect(state => ({dashboards: state.dashboards}), ({changeLayoutAction}))
 export class Dashboard extends React.Component {
     constructor(props) {

@@ -16,12 +16,13 @@
 }
 .body-content{
   font-size: 14px;
-  height: 227px !important;
+  width: 3000px;
 }
 .panel-body{
   margin: auto;
   height: 227px !important;
-
+  overflow-x: scroll;
+  overflow: auto;
 }
 .panel-heading--icon{
   float: right;
@@ -152,13 +153,11 @@ a.just-line + ul:before {
   display: -webkit-flex;
   display: inline-flex;
   border-radius: 3px;
-  border: 1px solid red;
-
-
+  border: 1px solid #CBCBCB;
 }
 
 .card__container--left{
-  width: 90px;
+  width: 26%;
   height: 90%;
   margin-top : 6px;
   margin-left : 10px;
@@ -168,7 +167,6 @@ a.just-line + ul:before {
   display: flex;
   -webkit-justify-content: center;
   justify-content: center;
-
 }
 
 .card__image{
@@ -178,44 +176,38 @@ a.just-line + ul:before {
 }
 .card__container--middle{
   margin-left: 10px;
-  width: 220px;
+  width: 70%;
   height: 100%;
   text-align: left;
+  display: block;
 }
-.card__container--right{
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-direction: column;
-  flex-direction: column;
-  width: 30px;
-  height: 100%;
-  display: none;
-}
+
 .card__name{
-  color: blue;
+  color: #27B4E7;
+  font-size: 1.9em;
+  font-weight: bold;
+  margin: 10px 0 0 0;
 }
 .card__dept{
-  margin-top: 5px;
   font-size: 1.4em;
   font-style: italic;
+  color: #615C5C;
+  margin: 0;
+  width: 100%;
 }
 .card__email--head{
-  margin-top: 5px;
-  font-size: 1.6em;
+  font-size: 1.4em;
   text-decoration: underline;
-  color: red;
+  color: #27B4E7;
+  margin: 0;
+  width: 100%;
+  font-family: sans-serif;
 }
 .card__email--tail{
-  forn-size:0.7em;
-
-}
-.img_a{
-  display: block;
-  margin: auto;
-  margin-top: -10px;
-  margin-bottom: 0;
-  width: 30px;
-  height:auto;
+  font-size: 0.7em;
+  color: #615C5C;
+  width: 100%;
+  margin: 0;
 }
 
 

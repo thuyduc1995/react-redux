@@ -12,10 +12,11 @@ let renderShowsTotal = (start, to, total) => {
     )
 }
 
-export const DatatableWidgetView = cssModules(({data, contact, stock, settingClick, dashboardMode, dataSource, onRemove, layoutType}) => {
+export const DatatableWidgetView = cssModules(({data, contact, stock, settingClick, dashboardMode, dataSource, onRemove, layoutType, fullscreen, onFullscreenChange}) => {
     let listField = data.configs.activeColumn
     let dataField = dataSource === 'Contacts' ? contact : stock
     let layout = ''
+    let fullscreenstyle = {}
     const options = {
         page: 1,
         sizePerPage: 5,
@@ -29,6 +30,15 @@ export const DatatableWidgetView = cssModules(({data, contact, stock, settingCli
         paginationShowsTotal: renderShowsTotal
     }
 
+    if (fullscreen) {
+        fullscreenstyle = {
+            position: 'fixed',
+            transform: 'scale(1.7)',
+            margin: 'auto',
+            zIndex: '10',
+            top: '400px'
+        }
+    }
     switch (layoutType) {
         case '1_COLUMN':
             layout = 'col-md-8'
@@ -44,9 +54,9 @@ export const DatatableWidgetView = cssModules(({data, contact, stock, settingCli
     }
 
     return (
-        <div className={layout}>
+        <div className={layout} style={fullscreenstyle}>
             <div className="panel panel-default" styleName="panel">
-                <TitleWidgetView widgetTitle={data.title} settingClick = {settingClick} dashboardMode = {dashboardMode} onRemove = {onRemove}/>
+                <TitleWidgetView widgetTitle={data.title} settingClick={settingClick} dashboardMode={dashboardMode} onRemove={onRemove} onFullscreenChange={onFullscreenChange}/>
                 <div className="panel-body" styleName="panel-body">
                     <BootstrapTable data={dataField} striped hover pagination condensed={true} options={ options } styleName='datatable' bordered={ false }>
                         <TableHeaderColumn dataField='defaultIsKey' dataSort isKey={true} style={{'display': 'none'}} hidden>First Name</TableHeaderColumn>

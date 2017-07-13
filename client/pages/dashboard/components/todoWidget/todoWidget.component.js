@@ -26,7 +26,8 @@ export class TodoWidget extends React.Component {
             visibility: 'all',
             mode: 'display',
             task: props.task,
-            titleSetting: this.props.data.title
+            titleSetting: this.props.data.title,
+            fullscreen: false
         }
     }
 
@@ -91,6 +92,9 @@ export class TodoWidget extends React.Component {
     onRemoveEvent = () => {
         return this.props.removeWidgetAction(this.props.data.id)
     }
+    onFullscreenChangeEvent = () => {
+        return this.setState({fullscreen: !this.state.fullscreen})
+    }
     render() {
         if (this.state.mode === 'display') {
             return <TodoWidgetView data={this.props.data}
@@ -104,7 +108,9 @@ export class TodoWidget extends React.Component {
                                    removeTask={this.removeTaskEvent}
                                    clearCompleted={this.clearCompletedEvent}
                                    onRemove={this.onRemoveEvent}
-                                   layoutType={this.props.layoutType}/>
+                                   layoutType={this.props.layoutType}
+                                   fullscreen={this.state.fullscreen}
+                                   onFullscreenChange={this.onFullscreenChangeEvent}/>
         }
 
             return <SettingTodoWidget cancelClick={this.cancelClickEvent}

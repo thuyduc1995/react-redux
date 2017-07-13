@@ -32,7 +32,7 @@ export const createTodoWidget = (widgetTitle, widgetId) => {
 
 export const createOrgchartWidget = (widgetTitle, widgetId) => {
     return {
-        type: CREATE_TODO_WIDGET,
+        type: CREATE_ORGCHART_WIDGET,
         widgetTitle,
         widgetId
     }

@@ -8,6 +8,6 @@ export class SettingOrgchartWidget extends React.Component {
     }
 
     render() {
-        return <SettingOrgchartWidgetView cancelClick={this.props.cancelClick} data={this.props.data} layoutType={this.props.layoutType}/>
+        return <SettingOrgchartWidgetView cancelClick={this.props.cancelClick} data={this.props.data} layoutType={this.props.layoutType} contacts={this.props.contacts}/>
     }
 }

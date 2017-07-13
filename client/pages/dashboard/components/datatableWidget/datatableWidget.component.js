@@ -17,7 +17,8 @@ export class DatatableWidget extends React.Component {
             disableColumn: this.props.data.configs.dataSource === 'Contacts' ? difference(Object.keys(this.props.contact[0]), this.props.data.configs.activeColumn).map(item => item) :
                 difference(Object.keys(this.props.stock[0]), this.props.data.configs.activeColumn).map(item => item),
             dataSource: this.props.data.configs.dataSource,
-            titleSetting: this.props.data.title
+            titleSetting: this.props.data.title,
+            fullscreen: false
         }
     }
 
@@ -73,6 +74,9 @@ export class DatatableWidget extends React.Component {
     onRemoveEvent = () => {
         return this.props.removeWidgetAction(this.props.data.id)
     }
+    onFullscreenChangeEvent = () => {
+        return this.setState({fullscreen: !this.state.fullscreen})
+    }
     render() {
         if (this.state.mode === 'display') {
             return <DatatableWidgetView data = {this.props.data}
@@ -82,7 +86,9 @@ export class DatatableWidget extends React.Component {
                                         dashboardMode = {this.props.dashboardMode}
                                         dataSource = {this.state.dataSource}
                                         onRemove = {this.onRemoveEvent}
-                                        layoutType={this.props.layoutType}/>
+                                        layoutType={this.props.layoutType}
+                                        fullscreen={this.state.fullscreen}
+                                        onFullscreenChange={this.onFullscreenChangeEvent}/>
         }
 
             return <SettingDatatableWidgetView cancelClick = {this.cancelClickEvent}

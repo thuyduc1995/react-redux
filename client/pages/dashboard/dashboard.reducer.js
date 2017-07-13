@@ -1,8 +1,10 @@
 import { ADD_TODO_DASHBOARD, REMOVE_TASK_DASHBOARD, CHANGE_SETTING_TODO} from '../dashboard/components/todoWidget/todoWidget.action'
 import {CHANGE_SETTING_TEXT} from '../dashboard/components/textWidget/textWidget.action'
 import {CHANGE_SETTING_DATATABLE} from '../dashboard/components/datatableWidget/datatableWidget.action'
+import {CHANGE_SETTING_ORGCHART} from '../dashboard/components/orgchartWidget/orgchartWidget.action'
 import {REMOVE_WIDGET, CHANGE_LAYOUT} from './dashboard.action'
 import {CREATE_TEXT_WIDGET, CREATE_DATATABLE_WIDGET, CREATE_ORGCHART_WIDGET, CREATE_TODO_WIDGET} from '../dashboard/components/addWidget/addWidget.action'
+
 
 export const dashboards = (state = {}, action = {}) => {
     switch (action.type) {
@@ -199,7 +201,7 @@ export const dashboards = (state = {}, action = {}) => {
                                 title: action.widgetTitle,
                                 widgetType: 'ORGCHART_WIDGET',
                                 configs: {
-                                    root: ''
+                                    rootId: 2
                                 }
                             }
                         }
@@ -217,6 +219,25 @@ export const dashboards = (state = {}, action = {}) => {
                 }
             ]
 
+        case CHANGE_SETTING_ORGCHART:
+            return [
+                {
+                    ...state[0],
+                    widgets: state[0].widgets.map(widget => {
+                        if (widget.id === action.widgetId) {
+                            return {
+                                ...widget,
+                                title: action.widgetTitle,
+                                configs: {
+                                    rootId: parseInt(action.rootId, 10)
+                                }
+                            }
+                        }
+
+                        return widget
+                    })
+                }
+            ]
         default:
             return state
     }

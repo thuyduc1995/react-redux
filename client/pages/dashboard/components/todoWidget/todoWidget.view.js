@@ -4,9 +4,10 @@ import style from './todoWidget.style.scss'
 import {FormControl, ControlLabel, Button, ListGroup, ListGroupItem} from 'react-bootstrap'
 import {TitleWidgetView} from '../titleWidget.view'
 
-export const TodoWidgetView = cssModules(({data, task, visibility, changeVisibility, settingClick, dashboardMode, addTodo, changeTask, removeTask, clearCompleted, onRemove, layoutType}) => {
+export const TodoWidgetView = cssModules(({data, task, visibility, changeVisibility, settingClick, dashboardMode, addTodo, changeTask, removeTask, clearCompleted, onRemove, layoutType, fullscreen, onFullscreenChange}) => {
     let tempTask = {}
     let itemAll = []
+    let fullscreenstyle = {}
 
     data.configs.task.forEach(id => {
         task.forEach(item => {
@@ -51,11 +52,20 @@ export const TodoWidgetView = cssModules(({data, task, visibility, changeVisibil
         default:
             break
     }
+    if (fullscreen) {
+        fullscreenstyle = {
+            position: 'fixed',
+            transform: 'scale(1.7)',
+            margin: 'auto',
+            zIndex: '10',
+            top: '400px'
+        }
+    }
 
     return (
-        <div className={layout}>
+        <div className={layout} style={fullscreenstyle}>
             <div className="panel panel-default" styleName="panel">
-                <TitleWidgetView widgetTitle = {data.title} settingClick = {settingClick} dashboardMode = {dashboardMode} onRemove = {onRemove}/>
+                <TitleWidgetView widgetTitle={data.title} settingClick={settingClick} dashboardMode={dashboardMode} onRemove={onRemove} onFullscreenChange={onFullscreenChange}/>
                 <div className="panel-body" styleName="panel-body">
                     <FormControl
                         type="text"

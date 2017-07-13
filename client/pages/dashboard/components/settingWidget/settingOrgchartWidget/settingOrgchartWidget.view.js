@@ -5,7 +5,7 @@ import style from '../settingWidget.style.scss'
 import {OrgchartSettingView} from './orgchartSetting.view'
 
 
-export const SettingOrgchartWidgetView = cssModules(({cancelClick, data, layoutType}) => {
+export const SettingOrgchartWidgetView = cssModules(({cancelClick, data, layoutType, contacts, onChangeRoot, onTitleSettingChange, onSubmitSetting}) => {
     let layout = ''
 
     switch (layoutType) {
@@ -36,18 +36,14 @@ export const SettingOrgchartWidgetView = cssModules(({cancelClick, data, layoutT
                             <ControlLabel styleName="form--label">Widget Title:</ControlLabel>
                             <FormControl
                                 type="text"
-                                placeholder="New Widget"
-                                value={data.title}
+                                defaultValue={data.title}
+                                onChange = {onTitleSettingChange}
                             />
                         </div>
                         <div styleName="container--type">
                             <ControlLabel styleName="form--label">Widget Type:</ControlLabel>
                             <FormControl componentClass="select" defaultValue={data.widgetType}>
-                                <option value="default"></option>
-                                <option value="TEXT_WIDGET">Text</option>
-                                <option value="DATATABLE_WIDGET">Datatable</option>
                                 <option value="ORGCHART_WIDGET">OrgChart</option>
-                                <option value="TODO_WIDGET">ToDos</option>
                             </FormControl>
                         </div>
                         <div styleName="container--width">
@@ -64,11 +60,11 @@ export const SettingOrgchartWidgetView = cssModules(({cancelClick, data, layoutT
                                 placeholder="200"
                             />
                         </div>
-                        <Button bsStyle="primary" styleName="form--button">OK</Button>
+                        <Button bsStyle="primary" styleName="form--button" onClick={onSubmitSetting}>OK</Button>
                         <Button styleName="form--button" onClick={cancelClick}>Cancel</Button>
                     </form>
                 </div>
-                <OrgchartSettingView data = {data}/>
+                <OrgchartSettingView contacts={contacts} onChangeRoot={onChangeRoot} data={data}/>
             </div>
         </div>
     )

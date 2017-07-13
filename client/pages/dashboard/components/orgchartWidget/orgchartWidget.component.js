@@ -1,15 +1,19 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {OrgchartWidgetView} from './orgchartWidget.view'
-import {SettingOrgchartWidget} from '../settingWidget/settingOrgchartWidget/settingOrgchartWidget.component'
+import {SettingOrgchartWidgetView} from '../settingWidget/settingOrgchartWidget/settingOrgchartWidget.view'
 import {removeWidgetAction} from '../../dashboard.action'
+import {changeSettingOrgchartAction} from './orgchartWidget.action'
 
-@connect(state => ({contact: state.contacts}), ({ removeWidgetAction }))
+@connect(state => ({contact: state.contacts}), ({ removeWidgetAction, changeSettingOrgchartAction }))
 export class OrgchartWidget extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            mode: 'display'
+            mode: 'display',
+            titleSetting: this.props.data.title,
+            rootId: this.props.data.configs.rootId,
+            fullscreen: false
         }
     }
     settingClickEvent = (event) => {
@@ -25,6 +29,20 @@ export class OrgchartWidget extends React.Component {
     onRemoveEvent = () => {
         return this.props.removeWidgetAction(this.props.data.id)
     }
+    onTitleSettingChangeEvent = (event) => {
+        return this.setState({titleSetting: event.target.value})
+    }
+    onChangeRootEvent = (event) => {
+        return this.setState({rootId: event.target.value})
+    }
+    onSubmitSettingEvent = () => {
+        this.props.changeSettingOrgchartAction(this.props.data.id, this.state.titleSetting, this.state.rootId)
+
+        return this.setState({mode: 'display'})
+    }
+    onFullscreenChangeEvent = () => {
+        return this.setState({fullscreen: !this.state.fullscreen})
+    }
     render() {
         if (this.state.mode === 'display')
         {
@@ -32,12 +50,18 @@ export class OrgchartWidget extends React.Component {
                                        settingClick={this.settingClickEvent}
                                        dashboardMode={this.props.dashboardMode}
                                        onRemove={this.onRemoveEvent}
-                                       layoutType={this.props.layoutType}/>
+                                       layoutType={this.props.layoutType}
+                                       contacts={this.props.contact}
+                                       fullscreen={this.state.fullscreen}
+                                       onFullscreenChange={this.onFullscreenChangeEvent}/>
         }
 
-            return <SettingOrgchartWidget cancelClick = {this.cancelClickEvent}
+            return <SettingOrgchartWidgetView cancelClick = {this.cancelClickEvent}
                                           data = {this.props.data}
-                                          layoutType={this.props.layoutType}/>
+                                          layoutType={this.props.layoutType}
+                                          contacts={this.props.contact}
+                                          onChangeRoot={this.onChangeRootEvent}
+                                          onTitleSettingChange={this.onTitleSettingChangeEvent}
+                                          onSubmitSetting={this.onSubmitSettingEvent}/>
     }
 }
-

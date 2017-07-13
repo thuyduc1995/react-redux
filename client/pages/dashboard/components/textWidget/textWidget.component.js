@@ -12,7 +12,8 @@ export class TextWidget extends React.Component {
         this.state = {
             mode: 'display',
             titleSetting: this.props.data.title,
-            text: this.props.data.configs.text
+            text: this.props.data.configs.text,
+            fullscreen: false
         }
     }
     settingClickEvent = (event) => {
@@ -39,6 +40,9 @@ export class TextWidget extends React.Component {
     onRemoveEvent = () => {
         return this.props.removeWidgetAction(this.props.data.id)
     }
+    onFullscreenChangeEvent = () => {
+        return this.setState({fullscreen: !this.state.fullscreen})
+    }
     render() {
         if (this.state.mode === 'display')
         {
@@ -46,7 +50,9 @@ export class TextWidget extends React.Component {
                                    settingClick={this.settingClickEvent}
                                    dashboardMode={this.props.dashboardMode}
                                    onRemove={this.onRemoveEvent}
-                                   layoutType={this.props.layoutType}/>
+                                   layoutType={this.props.layoutType}
+                                   fullscreen={this.state.fullscreen}
+                                   onFullscreenChange={this.onFullscreenChangeEvent}/>
         }
 
             return <SettingTextWidget cancelClick={this.cancelClickEvent}
