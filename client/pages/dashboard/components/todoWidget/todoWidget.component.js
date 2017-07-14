@@ -1,9 +1,9 @@
 import React from 'react'
-import {TodoWidgetView} from './todoWidget.view'
-import {connect} from 'react-redux'
-import {SettingTodoWidget} from '../settingWidget/settingTodoWidget/settingTodoWidget.component'
-import {addTodoTaskAction, addTodoDashboardAction, changeTaskAction, removeTaskAction, removeTaskDashboardAction, changeSettingTodoAction} from './todoWidget.action'
-import {removeWidgetAction} from '../../dashboard.action'
+import { TodoWidgetView } from './todoWidget.view'
+import { connect } from 'react-redux'
+import { SettingTodoWidget } from '../settingWidget/settingTodoWidget/settingTodoWidget.component'
+import { addTodoTaskAction, addTodoDashboardAction, changeTaskAction, removeTaskAction, removeTaskDashboardAction, changeSettingTodoAction } from './todoWidget.action'
+import { removeWidgetAction } from '../../dashboard.action'
 
 let find = (list) => {
     let maxId = 0
@@ -42,21 +42,21 @@ export class TodoWidget extends React.Component {
     settingClickEvent = (event) => {
         event.preventDefault()
 
-        return this.setState({mode: 'setting'})
+        return this.setState({ mode: 'setting' })
     }
     cancelClickEvent = (event) => {
         event.preventDefault()
 
-        return this.setState({mode: 'display'})
+        return this.setState({ mode: 'display' })
     }
     changeVisibilityEvent = (event) => {
         switch (event.target.value) {
             case 'completed':
-                return this.setState({visibility: 'completed'})
+                return this.setState({ visibility: 'completed' })
             case 'active':
-                return this.setState({visibility: 'active'})
+                return this.setState({ visibility: 'active' })
             default:
-                return this.setState({visibility: 'all'})
+                return this.setState({ visibility: 'all' })
         }
     }
     addTodoEvent = (event) => {
@@ -87,37 +87,44 @@ export class TodoWidget extends React.Component {
     onSubmitSettingEvent = () => {
         this.props.changeSettingTodoAction(this.state.titleSetting, this.props.data.id)
 
-        return this.setState({mode: 'display'})
+        return this.setState({ mode: 'display' })
     }
     onRemoveEvent = () => {
         return this.props.removeWidgetAction(this.props.data.id)
     }
     onFullscreenChangeEvent = () => {
-        return this.setState({fullscreen: !this.state.fullscreen})
+        return this.setState({ fullscreen: !this.state.fullscreen })
     }
     render() {
         if (this.state.mode === 'display') {
-            return <TodoWidgetView data={this.props.data}
-                                   task={this.state.task}
-                                   visibility={this.state.visibility}
-                                   changeVisibility={this.changeVisibilityEvent}
-                                   settingClick={this.settingClickEvent}
-                                   dashboardMode={this.props.dashboardMode}
-                                   addTodo={this.addTodoEvent}
-                                   changeTask={this.changeTaskEvent}
-                                   removeTask={this.removeTaskEvent}
-                                   clearCompleted={this.clearCompletedEvent}
-                                   onRemove={this.onRemoveEvent}
-                                   layoutType={this.props.layoutType}
-                                   fullscreen={this.state.fullscreen}
-                                   onFullscreenChange={this.onFullscreenChangeEvent}/>
+            return (
+                <TodoWidgetView
+                    data={ this.props.data }
+                    task={ this.state.task }
+                    visibility={ this.state.visibility }
+                    changeVisibility={ this.changeVisibilityEvent }
+                    settingClick={ this.settingClickEvent }
+                    dashboardMode={ this.props.dashboardMode }
+                    addTodo={ this.addTodoEvent }
+                    changeTask={ this.changeTaskEvent }
+                    removeTask={ this.removeTaskEvent }
+                    clearCompleted={ this.clearCompletedEvent }
+                    onRemove={ this.onRemoveEvent }
+                    layoutType={ this.props.layoutType }
+                    fullscreen={ this.state.fullscreen }
+                    onFullscreenChange={ this.onFullscreenChangeEvent }
+                />
+            )
         }
 
-            return <SettingTodoWidget cancelClick={this.cancelClickEvent}
-                                      data={this.props.data}
-                                      onTitleSettingChange={this.onTitleSettingChangeEvent}
-                                      onSubmitSetting={this.onSubmitSettingEvent}
-                                      layoutType={this.props.layoutType}/>
+            return (
+                <SettingTodoWidget
+                    cancelClick={ this.cancelClickEvent}
+                    data={ this.props.data }
+                    onTitleSettingChange={ this.onTitleSettingChangeEvent }
+                    onSubmitSetting={ this.onSubmitSettingEvent }
+                    layoutType={ this.props.layoutType}
+                />
+            )
     }
 }
-// hiugigk

@@ -1,9 +1,11 @@
 .navbar{
   background-color: #245380;
 }
+
 .navbar__brand{
   color: white !important;
 }
+
 .dropdown__button{
   border: none;
   background-color: #245380;
@@ -11,24 +13,29 @@
   font-size: medium;
   margin: auto;
 }
+
 .nav__right{
    margin-top: 7px;
 }
+
 .dropdown__button:hover {
   background-color: #245380 !important;
   color: white !important;
   border: none !important;
 }
+
 .dropdown__button:active {
   background-color: #245380 !important;
   color: white !important;
   border: none !important;
 }
+
 .dropdown__button:visited {
   background-color: #245380 !important;
   color: white !important;
   border: none !important;
 }
+
 .dropdown__button:focus {
   background-color: #245380 !important;
   color: white !important;

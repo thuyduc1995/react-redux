@@ -1,9 +1,9 @@
-import { ADD_TODO_DASHBOARD, REMOVE_TASK_DASHBOARD, CHANGE_SETTING_TODO} from '../dashboard/components/todoWidget/todoWidget.action'
-import {CHANGE_SETTING_TEXT} from '../dashboard/components/textWidget/textWidget.action'
-import {CHANGE_SETTING_DATATABLE} from '../dashboard/components/datatableWidget/datatableWidget.action'
-import {CHANGE_SETTING_ORGCHART} from '../dashboard/components/orgchartWidget/orgchartWidget.action'
-import {REMOVE_WIDGET, CHANGE_LAYOUT} from './dashboard.action'
-import {CREATE_TEXT_WIDGET, CREATE_DATATABLE_WIDGET, CREATE_ORGCHART_WIDGET, CREATE_TODO_WIDGET} from '../dashboard/components/addWidget/addWidget.action'
+import { ADD_TODO_DASHBOARD, REMOVE_TASK_DASHBOARD, CHANGE_SETTING_TODO } from '../dashboard/components/todoWidget/todoWidget.action'
+import { CHANGE_SETTING_TEXT } from '../dashboard/components/textWidget/textWidget.action'
+import { CHANGE_SETTING_DATATABLE } from '../dashboard/components/datatableWidget/datatableWidget.action'
+import { CHANGE_SETTING_ORGCHART } from '../dashboard/components/orgchartWidget/orgchartWidget.action'
+import { REMOVE_WIDGET, CHANGE_LAYOUT } from './dashboard.action'
+import { CREATE_TEXT_WIDGET, CREATE_DATATABLE_WIDGET, CREATE_ORGCHART_WIDGET, CREATE_TODO_WIDGET } from '../dashboard/components/addWidget/addWidget.action'
 
 
 export const dashboards = (state = {}, action = {}) => {

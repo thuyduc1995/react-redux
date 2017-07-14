@@ -1,11 +1,11 @@
 import React from 'react'
-import {Link} from 'react-router'
-import {Navbar, Nav, DropdownButton, MenuItem} from 'react-bootstrap'
+import { Link } from 'react-router'
+import { Navbar, Nav, DropdownButton, MenuItem } from 'react-bootstrap'
 import style from './navbar.style.scss'
 import cssModules from 'react-css-modules'
 
 
-export const NavbarView = cssModules(() => {
+export const NavbarView = cssModules(({ logOut }) => {
     return (
         <Navbar inverse fixedTop fluid styleName = 'navbar'>
             <Navbar.Header>
@@ -17,7 +17,7 @@ export const NavbarView = cssModules(() => {
             <Nav pullRight styleName="nav__right">
                 <span className="glyphicon glyphicon-user" styleName="navbar__brand"></span>
                 <DropdownButton title="Admin" styleName="dropdown__button" id="bg-nested-dropdown">
-                    <MenuItem eventKey="1">Logout</MenuItem>
+                    <MenuItem onClick={ logOut }>Logout</MenuItem>
                 </DropdownButton>
             </Nav>
         </Navbar>

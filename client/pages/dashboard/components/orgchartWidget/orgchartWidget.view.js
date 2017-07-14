@@ -1,9 +1,9 @@
 import React from 'react'
 import cssModules from 'react-css-modules'
 import style from './orgchartWidget.style.scss'
-import {TitleWidgetView} from '../titleWidget.view'
+import { TitleWidgetView } from '../titleWidget.view'
 
-export const OrgchartWidgetView = cssModules(({data, settingClick, dashboardMode, onRemove, layoutType, contacts, fullscreen, onFullscreenChange}) => {
+export const OrgchartWidgetView = cssModules(({ data, settingClick, dashboardMode, onRemove, layoutType, contacts, fullscreen, onFullscreenChange }) => {
     let layout = ''
     let fullscreenstyle = {}
 
@@ -46,7 +46,7 @@ export const OrgchartWidgetView = cssModules(({data, settingClick, dashboardMode
         return datas
     }
 
-    const Orgchart = cssModules(({rootId, first = false}) => {
+    const Orgchart = cssModules(({ rootId, first = false }) => {
         let personInfo = contacts.filter((contact) => {
             return contact.id === rootId
         })[0]
@@ -58,9 +58,9 @@ export const OrgchartWidgetView = cssModules(({data, settingClick, dashboardMode
                         <img src="./images/avatar.png" styleName="card__image"/>
                     </div>
                     <div styleName="card__container--middle">
-                        <p styleName="card__name">{personInfo.firstName} {personInfo.lastName}</p>
-                        <p styleName="card__dept">{personInfo.department}</p>
-                        <p styleName="card__email--head">{personInfo.employeeId}</p>
+                        <p styleName="card__name">{ personInfo.firstName } { personInfo.lastName }</p>
+                        <p styleName="card__dept">{ personInfo.department }</p>
+                        <p styleName="card__email--head">{ personInfo.employeeId }</p>
                         <p styleName="card__email--tail">@kms-technology.com</p>
                     </div>
                 </a>
@@ -78,17 +78,19 @@ export const OrgchartWidgetView = cssModules(({data, settingClick, dashboardMode
     }, style)
 
     return (
-        <div className={layout} style={fullscreenstyle}>
+        <div className={ layout } style={ fullscreenstyle }>
             <div className="panel panel-default" styleName="panel">
-                <TitleWidgetView widgetTitle={data.title}
-                                 settingClick={settingClick}
-                                 dashboardMode={dashboardMode}
-                                 onRemove={onRemove}
-                                 onFullscreenChange={onFullscreenChange}/>
+                <TitleWidgetView
+                    widgetTitle={ data.title }
+                    settingClick={ settingClick }
+                    dashboardMode={ dashboardMode }
+                    onRemove={ onRemove }
+                    onFullscreenChange={ onFullscreenChange }
+                />
                 <div className="panel-body" styleName="panel-body">
                     <div styleName="body-content">
                         <ul styleName='tree'>
-                            <Orgchart rootId={data.configs.rootId} first={true}/>
+                            <Orgchart rootId={ data.configs.rootId } first={ true } />
                         </ul>
                     </div>
                 </div>

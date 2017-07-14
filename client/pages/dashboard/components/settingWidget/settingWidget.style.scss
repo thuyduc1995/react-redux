@@ -2,12 +2,14 @@
   width: 400px;
   height: 200px;
 }
+
 .panel{
   width: 600px !important;
   height: auto;
   border-radius: 0;
   margin: 0 auto 20px auto;
 }
+
 .panel-heading{
   background-color: #245380 !important;
   color: white !important;
@@ -24,6 +26,7 @@
   -webkit-justify-content: center;
   justify-content: center;
 }
+
 .panel-heading--icon{
   float: right;
   font-size: 15px;
@@ -38,24 +41,28 @@
   margin-left: 20px;
   margin-top: 5px;
 }
+
 .container--type{
   width : 45%;
   margin-left: 20px;
   display: inline-table;
   margin-top: 5px;
 }
+
 .container--width{
   width : 21%;
   margin-left: 20px;
   display: inline-table;
   margin-top: 5px;
 }
+
 .container--height{
   width : 21%;
   margin-left: 20px;
   display: inline-table;
   margin-top: 5px;
 }
+
 .form--button{
   margin-left: 20px;
   margin-top: 20px;
@@ -67,6 +74,7 @@
   width: 95%;
   margin: auto;
 }
+
 .text-widget-setting{
   height: 200px;
   border: 1px solid #ddd;
@@ -91,9 +99,11 @@
   padding: 3px;
   border: 2px solid #f6f6f6
 }
+
 .column--Columns, .column--Selected{
   width: 47.5%;
 }
+
 .column--element{
   color: black;
   background-color: #f6f6f6;

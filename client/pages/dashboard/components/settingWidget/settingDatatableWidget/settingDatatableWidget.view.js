@@ -1,10 +1,10 @@
 import React from 'react'
-import {Button, ControlLabel, FormControl} from 'react-bootstrap'
+import { Button, ControlLabel, FormControl } from 'react-bootstrap'
 import cssModules from 'react-css-modules'
 import style from '../settingWidget.style.scss'
-import {DatatableSettingView} from './datatableSetting.view'
+import { DatatableSettingView } from './datatableSetting.view'
 
-export const SettingDatatableWidgetView = cssModules(({cancelClick, data, activeColumn, disableColumn, changeFromActive, changeToActive, dataSource, onTitleSettingChange, onSubmitSetting, layoutType}) => {
+export const SettingDatatableWidgetView = cssModules(({ cancelClick, data, activeColumn, disableColumn, changeFromActive, changeToActive, dataSource, onTitleSettingChange, onSubmitSetting, layoutType }) => {
     let layout = ''
 
     switch (layoutType) {
@@ -22,11 +22,11 @@ export const SettingDatatableWidgetView = cssModules(({cancelClick, data, active
     }
 
     return (
-        <div className={layout}>
+        <div className={ layout }>
             <div className="panel panel-default" styleName="panel">
                 <div className="panel-heading" styleName="panel-heading">
                     Widget Settings
-                    <span className="glyphicon glyphicon-remove" styleName="panel-heading--icon" onClick={cancelClick}/>
+                    <span className="glyphicon glyphicon-remove" styleName="panel-heading--icon" onClick={ cancelClick }/>
                 </div>
                 <div className="panel-body" styleName="panel-body">
                     <form>
@@ -35,13 +35,13 @@ export const SettingDatatableWidgetView = cssModules(({cancelClick, data, active
                             <FormControl
                                 type="text"
                                 placeholder="New Widget"
-                                defaultValue={data.title}
-                                onChange = {onTitleSettingChange}
+                                defaultValue={ data.title }
+                                onChange = { onTitleSettingChange }
                             />
                         </div>
                         <div styleName="container--type">
                             <ControlLabel styleName="form--label">Widget Type:</ControlLabel>
-                            <FormControl componentClass="select" defaultValue={data.widgetType}>
+                            <FormControl componentClass="select" defaultValue={ data.widgetType }>
                                 <option value="DATATABLE_WIDGET">Datatable</option>
                             </FormControl>
                         </div>
@@ -59,12 +59,17 @@ export const SettingDatatableWidgetView = cssModules(({cancelClick, data, active
                                 placeholder="200"
                             />
                         </div>
-                        <Button bsStyle="primary" styleName="form--button" onClick = {onSubmitSetting}>OK</Button>
-                        <Button styleName="form--button" onClick={cancelClick}>Cancel</Button>
+                        <Button bsStyle="primary" styleName="form--button" onClick = { onSubmitSetting }>OK</Button>
+                        <Button styleName="form--button" onClick={ cancelClick }>Cancel</Button>
                     </form>
                 </div>
-                <DatatableSettingView data = {data} activeColumn = {activeColumn} disableColumn = {disableColumn} changeFromActive = {changeFromActive}
-                                      changeToActive = {changeToActive} dataSource = {dataSource}
+                <DatatableSettingView
+                    data={ data }
+                    activeColumn={ activeColumn }
+                    disableColumn={ disableColumn }
+                    changeFromActive={ changeFromActive }
+                    changeToActive={ changeToActive }
+                    dataSource={ dataSource }
                 />
             </div>
         </div>

@@ -9,21 +9,20 @@ export class Login extends React.Component {
         super(props)
         this.state = {
             username: '',
-            password: '',
-            isWrong: false
+            password: ''
         }
     }
-    onChange = (event) => {
+    onChangeEvent = (event) => {
         let { name, value } = event.target
 
         return this.setState({ [name]: value })
     }
-    onSave = (event) => {
+    onSaveEvent = (event) => {
         event.preventDefault()
         let { username, password } = this.state
 
-        if (username === '') {
-            alert("ID and Password must be filled out")
+        if (username === '' || password === '') {
+            console.log("ID and Password must be filled out")
         }
         else {
             this.props.userLoginRequest({ username, password })
@@ -31,14 +30,12 @@ export class Login extends React.Component {
                     browserHistory.push('/dashboard')
                 )
                 .catch(
-                    result => this.setState({isWrong: result})
+                    result => this.setState({ isWrong: result })
                 )
         }
     }
     render() {
-
-
-        return <LoginView onChangeEvent={this.onChange} onSaveEvent={this.onSave} isWrong={this.state.isWrong}/>
+        return <LoginView onChange={ this.onChangeEvent } onSave={ this.onSaveEvent } />
     }
 }
 

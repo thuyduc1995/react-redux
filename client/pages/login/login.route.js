@@ -1,4 +1,4 @@
-import {Login} from './login.component'
+import { Login } from './login.component'
 
 export const LoginRoute = {
     path: '/login',

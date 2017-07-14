@@ -22,7 +22,7 @@ export const AddWidgetView = cssModules(({ settingClick, dashboardMode, layoutTy
     }
 
     return (
-            <div style={{display: isDisplay}} className={layout}>
+            <div style={{ display: isDisplay }} className={ layout }>
                 <div className="panel panel-default" styleName="panel">
                     <div className="panel-heading" styleName="panel-heading">
                         Add Widget

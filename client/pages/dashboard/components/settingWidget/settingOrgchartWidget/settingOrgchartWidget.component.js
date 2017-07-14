@@ -1,5 +1,5 @@
 import React from 'react'
-import {SettingOrgchartWidgetView} from './settingOrgchartWidget.view'
+import { SettingOrgchartWidgetView } from './settingOrgchartWidget.view'
 
 
 export class SettingOrgchartWidget extends React.Component {
@@ -8,6 +8,13 @@ export class SettingOrgchartWidget extends React.Component {
     }
 
     render() {
-        return <SettingOrgchartWidgetView cancelClick={this.props.cancelClick} data={this.props.data} layoutType={this.props.layoutType} contacts={this.props.contacts}/>
+        return (
+            <SettingOrgchartWidgetView
+                cancelClick={ this.props.cancelClick }
+                data={ this.props.data }
+                layoutType={ this.props.layoutType }
+                contacts={ this.props.contacts }
+            />
+        )
     }
 }

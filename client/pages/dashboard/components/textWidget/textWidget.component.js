@@ -1,9 +1,9 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import {TextWidgetView} from './textWidget.view'
-import {SettingTextWidget} from '../settingWidget/settingTextWidget/settingTextWidget.component'
-import {changeSettingTextAction} from './textWidget.action'
-import {removeWidgetAction} from '../../dashboard.action'
+import { connect } from 'react-redux'
+import { TextWidgetView } from './textWidget.view'
+import { SettingTextWidget } from '../settingWidget/settingTextWidget/settingTextWidget.component'
+import { changeSettingTextAction } from './textWidget.action'
+import { removeWidgetAction } from '../../dashboard.action'
 
 @connect(state => ({}), ({ changeSettingTextAction, removeWidgetAction }))
 export class TextWidget extends React.Component {
@@ -19,12 +19,12 @@ export class TextWidget extends React.Component {
     settingClickEvent = (event) => {
         event.preventDefault()
 
-        return this.setState({mode: 'setting'})
+        return this.setState({ mode: 'setting' })
     }
     cancelClickEvent = (event) => {
         event.preventDefault()
 
-        return this.setState({mode: 'display'})
+        return this.setState({ mode: 'display' })
     }
     onTitleSettingChangeEvent = (event) => {
         return this.setState({ titleSetting: event.target.value })
@@ -35,32 +35,40 @@ export class TextWidget extends React.Component {
     onSubmitSettingEvent = () => {
         this.props.changeSettingTextAction(this.state.titleSetting, this.state.text, this.props.data.id)
 
-        return this.setState({mode: 'display'})
+        return this.setState({ mode: 'display' })
     }
     onRemoveEvent = () => {
         return this.props.removeWidgetAction(this.props.data.id)
     }
     onFullscreenChangeEvent = () => {
-        return this.setState({fullscreen: !this.state.fullscreen})
+        return this.setState({ fullscreen: !this.state.fullscreen })
     }
     render() {
         if (this.state.mode === 'display')
         {
-            return <TextWidgetView data={this.props.data}
-                                   settingClick={this.settingClickEvent}
-                                   dashboardMode={this.props.dashboardMode}
-                                   onRemove={this.onRemoveEvent}
-                                   layoutType={this.props.layoutType}
-                                   fullscreen={this.state.fullscreen}
-                                   onFullscreenChange={this.onFullscreenChangeEvent}/>
+            return (
+                <TextWidgetView
+                    data={ this.props.data }
+                    settingClick={ this.settingClickEvent }
+                    dashboardMode={ this.props.dashboardMode }
+                    onRemove={ this.onRemoveEvent }
+                    layoutType={ this.props.layoutType }
+                    fullscreen={ this.state.fullscreen }
+                    onFullscreenChange={ this.onFullscreenChangeEvent }
+                />
+            )
         }
 
-            return <SettingTextWidget cancelClick={this.cancelClickEvent}
-                                      data={this.props.data}
-                                      onTitleSettingChange={this.onTitleSettingChangeEvent}
-                                      onTextSettingChange={this.onTextSettingChangeEvent}
-                                      onSubmitSetting={this.onSubmitSettingEvent}
-                                      layoutType={this.props.layoutType}/>
+            return (
+                <SettingTextWidget
+                    cancelClick={ this.cancelClickEvent }
+                    data={ this.props.data }
+                    onTitleSettingChange={ this.onTitleSettingChangeEvent }
+                    onTextSettingChange={ this.onTextSettingChangeEvent}
+                    onSubmitSetting={ this.onSubmitSettingEvent }
+                    layoutType={ this.props.layoutType }
+                />
+            )
     }
 }
 

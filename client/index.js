@@ -24,10 +24,6 @@ const initStore = (reducers, state) => {
 const store = initStore(AppReducer, window.__INITIAL_STATE__)
 
 
-let user = sessionStorage.user
-
-store.dispatch(setCurrentUser(user === undefined ? {} : JSON.parse(user)))
-
 render(
     <Provider store={store}>
         <Router history={browserHistory} routes={AppRoute}/>

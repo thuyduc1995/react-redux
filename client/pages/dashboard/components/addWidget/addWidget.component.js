@@ -1,11 +1,11 @@
 import React from 'react'
-import {AddWidgetView} from './addWidget.view'
-import {connect} from 'react-redux'
-import {SettingNewWidgetView} from '../settingWidget/settingNewWidget/settingNewWidget.view'
-import {difference} from 'underscore'
-import {createTextWidget, createDatatableWidget, createTodoWidget, createOrgchartWidget} from './addWidget.action'
+import { AddWidgetView } from './addWidget.view'
+import { connect } from 'react-redux'
+import { SettingNewWidgetView } from '../settingWidget/settingNewWidget/settingNewWidget.view'
+import { difference } from 'underscore'
+import { createTextWidget, createDatatableWidget, createTodoWidget, createOrgchartWidget } from './addWidget.action'
 
-@connect(state => ({contact: state.contacts, stock: state.stocks}), ({createTextWidget, createTodoWidget, createDatatableWidget, createOrgchartWidget}))
+@connect(state => ({ contact: state.contacts, stock: state.stocks }), ({ createTextWidget, createTodoWidget, createDatatableWidget, createOrgchartWidget }))
 export class AddWidget extends React.Component {
     constructor(props) {
         super(props)
@@ -15,7 +15,8 @@ export class AddWidget extends React.Component {
             text: this.props.data.configs.text,
             activeColumn: [],
             targetSource: 'Contacts',
-            disableColumn: this.targetSource === 'Stocks' ? difference(Object.keys(this.props.stock[0]), []).map(item => item) :
+            disableColumn: this.targetSource === 'Stocks' ?
+                difference(Object.keys(this.props.stock[0]), []).map(item => item) :
                 difference(Object.keys(this.props.contact[0]), []).map(item => item),
             dataSource: this.props.data.configs.dataSource,
             targetType: this.props.data.widgetType
@@ -25,12 +26,12 @@ export class AddWidget extends React.Component {
     settingClickEvent = (event) => {
         event.preventDefault()
 
-        return this.setState({mode: 'setting'})
+        return this.setState({ mode: 'setting' })
     }
     cancelClickEvent = (event) => {
         event.preventDefault()
 
-        return this.setState({mode: 'display'})
+        return this.setState({ mode: 'display' })
     }
     changeDropdownEvent = (event) => {
         return this.setState({ targetType: event.target.value })
@@ -43,7 +44,8 @@ export class AddWidget extends React.Component {
             case 'TEXT_WIDGET':
                 return this.props.createTextWidget(this.state.text, this.state.titleSetting, this.props.data.id)
             case 'DATATABLE_WIDGET':
-                return this.props.createDatatableWidget(this.state.targetSource, this.state.activeColumn, this.state.titleSetting, this.props.data.id)
+                return this.props.createDatatableWidget(this.state.targetSource,
+                    this.state.activeColumn, this.state.titleSetting, this.props.data.id)
             case 'TODO_WIDGET':
                 return this.props.createTodoWidget(this.state.titleSetting, this.props.data.id)
             case 'ORGCHART_WIDGET':
@@ -52,7 +54,7 @@ export class AddWidget extends React.Component {
                 return null
         }
 
-        return this.setState({mode: 'display'})
+        return this.setState({ mode: 'display' })
     }
     onTextSettingChangeEvent = (event) => {
         return this.setState({ text: event.blocks[0].text })
@@ -84,30 +86,41 @@ export class AddWidget extends React.Component {
     }
     changeDataSourceEvent = (event) => {
         this.setState({ targetSource: event.target.value})
-        this.setState({disableColumn: event.target.value === 'Stocks' ? difference(Object.keys(this.props.stock[0]), []).map(item => item) :
+        this.setState({disableColumn: event.target.value === 'Stocks' ?
+            difference(Object.keys(this.props.stock[0]), []).map(item => item) :
             difference(Object.keys(this.props.contact[0]), []).map(item => item)})
         this.setState({activeColumn: []})
     }
     render() {
         if (this.state.mode === 'display')
         {
-            return <AddWidgetView settingClick={this.settingClickEvent} dashboardMode={this.props.dashboardMode} layoutType={this.props.layoutType}/>
+            return (
+                <AddWidgetView
+                    settingClick={ this.settingClickEvent }
+                    dashboardMode={ this.props.dashboardMode }
+                    layoutType={ this.props.layoutType }
+                />
+            )
         }
 
-            return <SettingNewWidgetView cancelClick = {this.cancelClickEvent}
-                                         data = {this.props.data}
-                                         onTitleSettingChange = {this.onTitleSettingChangeEvent}
-                                         onSubmitSetting = {this.onSubmitSettingEvent}
-                                         changeFromActive = {this.changeFromActiveEvent}
-                                         changeToActive = {this.changeToActiveEvent}
-                                         changeDropdown = {this.changeDropdownEvent}
-                                         targetType = {this.state.targetType}
-                                         text = {this.state.text}
-                                         activeColumn = {this.state.activeColumn}
-                                         disableColumn = {this.state.disableColumn}
-                                         dataSource = {this.state.dataSource}
-                                         onTextSettingChange = {this.onTextSettingChangeEvent}
-                                         changeDataSource = {this.changeDataSourceEvent}
-                                         layoutType={this.props.layoutType}/>
+            return (
+                <SettingNewWidgetView
+                    cancelClick = { this.cancelClickEvent }
+                    data = { this.props.data }
+                    onTitleSettingChange = { this.onTitleSettingChangeEvent }
+                    onSubmitSetting = { this.onSubmitSettingEvent }
+                    changeFromActive = { this.changeFromActiveEvent }
+                    changeToActive = { this.changeToActiveEvent }
+                    changeDropdown = { this.changeDropdownEvent }
+                    targetType = { this.state.targetType }
+                    text = { this.state.text }
+                    activeColumn = { this.state.activeColumn }
+                    disableColumn = { this.state.disableColumn }
+                    dataSource = { this.state.dataSource }
+                    onTextSettingChange = { this.onTextSettingChangeEvent }
+                    changeDataSource = { this.changeDataSourceEvent }
+                    layoutType={ this.props.layoutType }
+                />
+            )
     }
 }

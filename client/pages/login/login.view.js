@@ -1,12 +1,10 @@
 import React from 'react'
-import { Form, FormControl, FormGroup, Button, Row, Col } from 'react-bootstrap'
+import { Button, Row, Col } from 'react-bootstrap'
 import cssModules from 'react-css-modules'
 import style from './login.style.scss'
 
 
-export const LoginView = cssModules(({onChangeEvent, onSaveEvent, isWrong}) => {
-    let messageAppear = isWrong ? 'block' : 'none'
-
+export const LoginView = cssModules(({ onChange, onSave }) => {
 
 return (
         <Row className="show-grid">
@@ -21,7 +19,7 @@ return (
                         placeholder="Username"
                         required=""
                         autoFocus=""
-                        onChange={onChangeEvent} />
+                        onChange={ onChange } />
                     <input
                         type="password"
                         styleName='login__input'
@@ -29,9 +27,8 @@ return (
                         name="password"
                         placeholder="Password"
                         required=""
-                        onChange={onChangeEvent}/>
-                    <Button bsStyle="primary" styleName="login__button" onClick={onSaveEvent}>Login</Button>
-                    <p style={{display: messageAppear}}>Wrong Username or Password</p>
+                        onChange={ onChange }/>
+                    <Button bsStyle="primary" styleName="login__button" onClick={ onSave }>Login</Button>
                 </form>
             </Col>
         </Row>

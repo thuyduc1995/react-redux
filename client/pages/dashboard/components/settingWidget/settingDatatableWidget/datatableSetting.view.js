@@ -1,21 +1,21 @@
 import React from 'react'
 import cssModules from 'react-css-modules'
 import style from '../settingWidget.style.scss'
-import {FormControl} from 'react-bootstrap'
+import { FormControl } from 'react-bootstrap'
 
 
-export const DatatableSettingView = cssModules(({activeColumn, disableColumn, changeFromActive, changeToActive, dataSource, changeDataSource}) => {
+export const DatatableSettingView = cssModules(({ activeColumn, disableColumn, changeFromActive, changeToActive, dataSource, changeDataSource }) => {
     let defaultSource = ['Contacts', 'Stocks']
 
     return (
         <div styleName="container--setting-widget">
             <h5 styleName="title--setting-widget">Data source:</h5>
-            <FormControl componentClass="select" onChange={changeDataSource}>
+            <FormControl componentClass="select" onChange={ changeDataSource }>
                 {
                     typeof (dataSource) !== "undefined" ?
-                        <option value={dataSource}>{dataSource}</option> :
+                        <option value={ dataSource }>{ dataSource }</option> :
                         defaultSource.map(src => {
-                            return <option value={src}>{src}</option>
+                            return <option value={ src }>{ src }</option>
                         })
                 }
             </FormControl>
@@ -26,7 +26,7 @@ export const DatatableSettingView = cssModules(({activeColumn, disableColumn, ch
                         {
                             disableColumn.map(column => {
                                 return <div styleName="column--element"
-                                            onClick={() => changeToActive(column)}>{column}</div>
+                                            onClick={ () => changeToActive(column) }>{ column }</div>
                             })
                         }
                     </div>
@@ -37,7 +37,7 @@ export const DatatableSettingView = cssModules(({activeColumn, disableColumn, ch
                         {
                             activeColumn.map(column => {
                                 return <div styleName="column--element"
-                                            onClick={() => changeFromActive(column)}>{column}</div>
+                                            onClick={ () => changeFromActive(column) }>{ column }</div>
                             })
                         }
                     </div>

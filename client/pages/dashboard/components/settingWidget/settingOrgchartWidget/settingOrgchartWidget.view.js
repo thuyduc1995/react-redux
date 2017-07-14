@@ -1,11 +1,11 @@
 import React from 'react'
-import {Button, ControlLabel, FormControl} from 'react-bootstrap'
+import { Button, ControlLabel, FormControl } from 'react-bootstrap'
 import cssModules from 'react-css-modules'
 import style from '../settingWidget.style.scss'
-import {OrgchartSettingView} from './orgchartSetting.view'
+import { OrgchartSettingView } from './orgchartSetting.view'
 
 
-export const SettingOrgchartWidgetView = cssModules(({cancelClick, data, layoutType, contacts, onChangeRoot, onTitleSettingChange, onSubmitSetting}) => {
+export const SettingOrgchartWidgetView = cssModules(({ cancelClick, data, layoutType, contacts, onChangeRoot, onTitleSettingChange, onSubmitSetting }) => {
     let layout = ''
 
     switch (layoutType) {
@@ -23,12 +23,12 @@ export const SettingOrgchartWidgetView = cssModules(({cancelClick, data, layoutT
     }
 
     return (
-        <div className={layout}>
+        <div className={ layout }>
             <div className="panel panel-default" styleName="panel">
                 <div className="panel-heading" styleName="panel-heading">
                     Widget Settings
                     <span className="glyphicon glyphicon-remove" styleName="panel-heading--icon"
-                          onClick={cancelClick}></span>
+                          onClick={ cancelClick }></span>
                 </div>
                 <div className="panel-body" styleName="panel-body">
                     <form>
@@ -36,13 +36,13 @@ export const SettingOrgchartWidgetView = cssModules(({cancelClick, data, layoutT
                             <ControlLabel styleName="form--label">Widget Title:</ControlLabel>
                             <FormControl
                                 type="text"
-                                defaultValue={data.title}
-                                onChange = {onTitleSettingChange}
+                                defaultValue={ data.title }
+                                onChange = { onTitleSettingChange }
                             />
                         </div>
                         <div styleName="container--type">
                             <ControlLabel styleName="form--label">Widget Type:</ControlLabel>
-                            <FormControl componentClass="select" defaultValue={data.widgetType}>
+                            <FormControl componentClass="select" defaultValue={ data.widgetType} >
                                 <option value="ORGCHART_WIDGET">OrgChart</option>
                             </FormControl>
                         </div>
@@ -60,11 +60,11 @@ export const SettingOrgchartWidgetView = cssModules(({cancelClick, data, layoutT
                                 placeholder="200"
                             />
                         </div>
-                        <Button bsStyle="primary" styleName="form--button" onClick={onSubmitSetting}>OK</Button>
-                        <Button styleName="form--button" onClick={cancelClick}>Cancel</Button>
+                        <Button bsStyle="primary" styleName="form--button" onClick={ onSubmitSetting }>OK</Button>
+                        <Button styleName="form--button" onClick={ cancelClick }>Cancel</Button>
                     </form>
                 </div>
-                <OrgchartSettingView contacts={contacts} onChangeRoot={onChangeRoot} data={data}/>
+                <OrgchartSettingView contacts={ contacts } onChangeRoot={ onChangeRoot } data={ data }/>
             </div>
         </div>
     )

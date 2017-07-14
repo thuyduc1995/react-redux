@@ -2,24 +2,28 @@
   width: 400px;
   height: 200px;
 }
+
 .panel{
   width: 600px !important;
   height: 270px !important;
   border-radius: 0;
   margin: 0 auto 20px auto;
 }
+
 .panel-heading{
   background-color: #245380 !important;
   color: white !important;
   border-radius: 0;
   font-weight: bold;
 }
+
 .body-content{
   font-size: 80px !important;
   border-radius: 0 !important;
   height: 227px !important;
   color: #767676;
 }
+
 .panel-body{
   margin: auto;
   text-align: center;
@@ -27,6 +31,7 @@
   padding-top: 65px;
   height: 227px !important;
 }
+
 .panel-heading--icon{
   float: right;
   font-size: 15px;
