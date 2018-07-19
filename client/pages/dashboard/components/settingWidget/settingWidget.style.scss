@@ -1,0 +1,114 @@
+.widget{
+  width: 400px;
+  height: 200px;
+}
+
+.panel{
+  width: 600px !important;
+  height: auto;
+  border-radius: 0;
+  margin: 0 auto 20px auto;
+}
+
+.panel-heading{
+  background-color: #245380 !important;
+  color: white !important;
+  border-radius: 0;
+  font-weight: bold;
+  height: 41px;
+}
+
+.panel-body{
+  padding: 0;
+  margin: auto;
+  height: 227px;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.panel-heading--icon{
+  float: right;
+  font-size: 15px;
+}
+
+.form--label{
+  color: #b5b3b3;
+}
+
+.container--title{
+  width : 93.5%;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+
+.container--type{
+  width : 45%;
+  margin-left: 20px;
+  display: inline-table;
+  margin-top: 5px;
+}
+
+.container--width{
+  width : 21%;
+  margin-left: 20px;
+  display: inline-table;
+  margin-top: 5px;
+}
+
+.container--height{
+  width : 21%;
+  margin-left: 20px;
+  display: inline-table;
+  margin-top: 5px;
+}
+
+.form--button{
+  margin-left: 20px;
+  margin-top: 20px;
+  width: 100px;
+  height: 40px;
+}
+.container--setting-widget{
+  border-top: 2px solid #245380;
+  width: 95%;
+  margin: auto;
+}
+
+.text-widget-setting{
+  height: 200px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  width: 550px;
+}
+.title--setting-widget{
+  color: #b5b3b3;
+  font-size: 14px;
+}
+
+.column-selection--container{
+  display: inline-flex;
+  width: 100%;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.column--Columns--container, .column--Selected--container{
+  background-color: white;
+  padding: 3px;
+  border: 2px solid #f6f6f6
+}
+
+.column--Columns, .column--Selected{
+  width: 47.5%;
+}
+
+.column--element{
+  color: black;
+  background-color: #f6f6f6;
+  border: 1px dashed #b5b3b3;
+  margin: 5px;
+  padding-left: 15px;
+  font-size: larger;
+}

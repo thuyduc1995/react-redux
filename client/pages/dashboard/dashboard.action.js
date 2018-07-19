@@ -1,11 +1,17 @@
-export const DashboardAction = {
-    'DASHBOARD_CREATION': 'DASHBOARD_CREATION'
-}
+export const REMOVE_WIDGET = 'REMOVE_WIDGET'
+export const CHANGE_LAYOUT = 'CHANGE_LAYOUT'
 
-export const DashboardActionCreator = {
-    createDashboard: () => {
-        return {
-            type: DashboardAction.DASHBOARD_CREATION
-        }
+export const removeWidgetAction = (widgetId) => {
+    return {
+        type: REMOVE_WIDGET,
+        widgetId
     }
 }
+export const changeLayoutAction = (layoutType) => {
+    return {
+        type: CHANGE_LAYOUT,
+        layoutType
+    }
+
+}
+
